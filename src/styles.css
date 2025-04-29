@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #0f0904;
+  font-family: "Lexend", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+  
+body {
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: #fff;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.item.visibleItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropDown {
+  opacity: 0;
+  transform: translatex(-50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dropDown.visibleDropDown {
+  opacity: 1;
+  transform: translateX(0);
+}
