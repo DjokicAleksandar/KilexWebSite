@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://DjokicAleksandar.github.io/KilexWebSite",
+  "homepage": "https://djokicaleksandar.github.io/KilexWebSite",
 
   "scripts": {
     "dev": "vite",
