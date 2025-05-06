@@ -2,6 +2,7 @@ import logoTransparent from "../assets/images/logoTransparent.png";
 import whatsapp from "../assets/images/whatsapp.png";
 import instagram from "../assets/images/instagram.png";
 import email from "../assets/images/email.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -40,8 +41,8 @@ const Footer = () => {
                 <div>
                     <h4 className="mb-2 fw-normal" style={{color: "#dab684", whiteSpace: "nowrap"}}> Uslovi korišćenja </h4>
                     <div className="d-flex gap-1 flex-column">
-                        <a href="#" className="fw-normal text-decoration-none" style={{color: "gray"}}> Politika privatnosti </a>
-                        <a href="#" className="fw-normal text-decoration-none" style={{color: "gray"}}> Uslovi korišćenja </a>
+                        <div className="fw-normal"> <Link style={{color: "gray"}} className="text-decoration-none" to={"/PrivacyPolicy"}>  Politika privatnosti </Link> </div>
+                        <div className="fw-normal"> <Link style={{color: "gray"}} className="text-decoration-none" to={"/TermsOfService"}>  Uslovi korišćenja </Link> </div>
                     </div>
                 </div>
                 <div className="d-flex flex-column">
@@ -60,7 +61,7 @@ const Footer = () => {
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                     objectFit: "cover",
-                    opacity: "0.2"}}>
+                    opacity: "0.1"}}>
             </div>
 
         </div>

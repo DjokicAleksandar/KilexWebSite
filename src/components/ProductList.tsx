@@ -3,8 +3,13 @@ import productData from "../data/products.json";
 import {Col, Row} from "react-bootstrap";
 import { useState, useEffect } from "react";
 import ImageSlider from "./ImageSlider";
+import WelcomeHeader from "./WelcomeHeader";
 
-function ProductList() {    
+interface ProductListProps {
+    top: number;
+}
+
+function ProductList({top}: ProductListProps) {    
     const [showSlider, setShowSlider] = useState(false);
     const [sliderData, setSliderData] = useState<{id: number} | null>(null);
 
@@ -27,21 +32,24 @@ function ProductList() {
 
     return (
         <>
-            <Row xs={1} md={2} lg={3} className="g-3">
-                {productData.map(item => (
-                    <Col key={item.id}> 
-                        <Product 
-                            id={item.id} 
-                            name={item.name} 
-                            price={item.price} 
-                            image={item.image} 
-                            available={item.available} 
-                            discount={item.discount}
-                            onOpenSlider={handleOpenSlider}/> 
-                    </Col>
-                ))}
-            </Row>
-                
+            <div style={{marginTop: top}}>
+                <WelcomeHeader/>
+                <Row xs={1} md={2} lg={3} className="g-4">
+                    {productData.map(item => (
+                        <Col key={item.id}> 
+                            <Product 
+                                id={item.id} 
+                                name={item.name} 
+                                price={item.price} 
+                                image={item.image} 
+                                available={item.available} 
+                                discount={item.discount}
+                                onOpenSlider={handleOpenSlider}/> 
+                        </Col>
+                    ))}
+                </Row>
+                    
+            </div>
             {showSlider && sliderData && (
                 <ImageSlider 
                     setShowSlider={() => setShowSlider(false)}

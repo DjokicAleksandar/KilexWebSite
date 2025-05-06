@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { CartItem } from "../components/CartItem";
 import {Form} from "../components/Form";
-import { Row, Col, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { validateForm } from "../utilities/validateForm";
 import Popup from "../components/Popup";
 import truck from "../assets/images/truck.png";
 import clock from "../assets/images/clock.png";
 import wallet from "../assets/images/wallet.png";
-import { Link } from "react-router-dom";
+import { formatPrice } from "../utilities/formatPrice";
+import { Link, useNavigate } from "react-router-dom";
 
 type CartItem = {
     id: number
@@ -18,9 +19,14 @@ type CartItem = {
 }
 
 function Cart() {
-    let total = 0;
+    let total = 300;
+    const isMobile = useIsMobile();
+    const navigate = useNavigate();
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
+
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [emailFormatError, setEmailFormatError] = useState(false);
+    const [phoneFormatError, setPhoneFormatError] = useState(false);
     const [popupStatus, setPopupStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
     const [formData, setFormData] = useState({
         name: "",
@@ -41,12 +47,12 @@ function Cart() {
         phone: false
     })
 
-    const isMobile = useIsMobile();
 
     useEffect(() => {
         const data = localStorage.getItem("shopping-cart");
 
         if (data) {
+            console.log(data)
             setCartItems(JSON.parse(data));
         }
     }, []);
@@ -71,18 +77,28 @@ function Cart() {
     }, [popupStatus]);
 
     cartItems.forEach((cartItem) => {
-        total += cartItem.price;
+        total += (cartItem.price * cartItem.quantity);
     })
 
-    const handleOnClick = async () => {
-        const {isValid, errors, emailFormatError} = validateForm(formData);
+    function ClearInputs() {
+        //setFormData
+    }
 
-        setFormError(errors)
+    const handleOnClick = async () => {
+        const {isValid, errors, emailFormatError, phoneFormatError} = validateForm(formData);
+
+        setFormError(errors);
         
         if (emailFormatError) {
             setEmailFormatError(true);
         } else {
             setEmailFormatError(false);
+        }
+
+        if (phoneFormatError) {
+            setPhoneFormatError(true);
+        } else {
+            setPhoneFormatError(false);
         }
 
         if (!isValid) {
@@ -101,11 +117,12 @@ function Cart() {
                 time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
             }
         };
-
+        
         try {   
             setPopupStatus("loading");
+            
 
-            const response = await fetch("http://localhost:5000/send-email", {
+            const response = await fetch(`${API_URL}/send-email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(fullData)
@@ -127,7 +144,7 @@ function Cart() {
                 }
             }
 
-            fetch("http://localhost:5000/add-sale", {
+            fetch(`${API_URL}/add-sale`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -140,14 +157,18 @@ function Cart() {
                 console.log("Greska prilikom cuvanja u bazu: " + err);
                 setPopupStatus("error");
             });
-            //ocisti inpute
-            //ocisti localStorage
+
+            ClearInputs();
             setPopupStatus("success");
+            localStorage.removeItem("shopping-cart");
+            //isprazni korpu
+            setCartItems([]);
+            navigate("/");
         } catch (error) {
             setPopupStatus("error");
             console.error("Greska tokom slanja: ", error);
         } finally {
-            //sakrij popUp loading
+            //sakrij popup
         }
     }
 
@@ -162,22 +183,23 @@ function Cart() {
                     padding: isMobile ? "10px" : "20px",
                     position: "relative"}}>
 
-            <Form formData={formData} setFormData={setFormData} formError={formError} emailFormatError={emailFormatError}/>
+            <Form formData={formData} setFormData={setFormData} formError={formError} 
+                emailFormatError={emailFormatError} phoneFormatError={phoneFormatError}/>
 
             <div style={{padding: isMobile ? "10px" : "30px"}}>
                 <h1 className="mb-3" style={{padding: "0px"}}>Porudžbina: </h1>
                 <div 
                     className="d-flex justify-content-around pt-2 pb-2"
                     style={{border: "1px solid #dab684"}}>
-                    <h4 style={{margin: "0"}}> Proizvod </h4>
-                    <h4 style={{margin: "0"}}> Cena </h4>
+                    <h4 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Proizvod </h4>
+                    <h4 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Cena </h4>
                 </div>
 
                 <div className="d-grid pt-2 pb-2 gap-2"
-                    style={{gridTemplateColumns: "1fr", paddingRight: "10px", border: "1px solid #dab684"}}>
+                    style={{gridTemplateColumns: "1fr", border: "1px solid #dab684"}}>
                     {cartItems.map(cartItem => {
                         return (
-                            <div key={cartItem.id} className="d-flex justify-content-around px-2">
+                            <div key={cartItem.id} className="d-flex justify-content-around">
                                 <CartItem id={cartItem.id} quantity={cartItem.quantity} variant="cart"/>
                             </div>
                         )
@@ -187,8 +209,15 @@ function Cart() {
                 <div 
                     className="d-flex justify-content-around pt-2 pb-2"
                     style={{border: "1px solid #dab684"}}>
-                    <h4 style={{margin: "0"}}> Ukupno </h4>
-                    <h4 style={{margin: "0"}}> {total} RSD </h4>
+                    <h5 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Dostava: </h5>
+                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> 300 RSD </h5>
+                </div>
+
+                <div 
+                    className="d-flex justify-content-around pt-2 pb-2"
+                    style={{border: "1px solid #dab684"}}>
+                    <h4 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Ukupno: </h4>
+                    <h4 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> {formatPrice(total)} </h4>
                 </div>
                 
                 <div className="d-flex flex-column gap-3 rounded-3 mt-5 mb-3" style={{fontSize: "1rem", textAlign: "center"}}> 
@@ -216,14 +245,14 @@ function Cart() {
                             <h5 style={{fontWeight: "400", fontSize: "1.1rem"}}> Snosi ih kupac, naplaćuju se po cenovniku kurirske službe </h5>
                         </div>
                     </div>
-                    <h4 className="mt-2 mb-2 p-2" style={{fontWeight: "500"}}> Podaci koje ste nam dostavili će biti korišćeni prilikom procesuiranja Vaše narudžbine u 
-                        skladu sa našom <Link to={"/PrivacyPolicy"} style={{color: "#dab684", textDecoration: "none"}}> privacy policy. </Link> </h4>
+                    <h5 className="mt-2 mb-2 p-2" style={{fontWeight: "500"}}> Podaci koje ste nam dostavili će biti korišćeni prilikom procesuiranja Vaše narudžbine u 
+                        skladu sa našom <Link to={"/PrivacyPolicy"} style={{color: "#dab684", textDecoration: "none"}}> politikom privatnosti. </Link> </h5>
                 
                     <button 
                         className="w-100 bg-black px-4 pt-2 pb-2 mb-2"
                         style={{color: "white", fontSize: "1.5rem", fontWeight: "300", border: "none", borderRadius: "4px"}}
                         onClick={handleOnClick}> 
-                    Naruči </button>
+                    Završi kupovinu </button>
                 </div>
 
             </div>
@@ -231,9 +260,9 @@ function Cart() {
             
         </Container>
 
-        {popupStatus === "loading" && <Popup type="loading"/>}
-        {popupStatus === "error" && <Popup type="error"/>}
-        {popupStatus === "success" && <Popup type="success"/>}
+        {popupStatus === "loading" && <Popup type={popupStatus}/>}
+        {popupStatus === "error" && <Popup type={popupStatus}/>}
+        {popupStatus === "success" && <Popup type={popupStatus}/>}
 
         {/* dodaj fakturu */}
         </>

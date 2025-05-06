@@ -45,13 +45,19 @@ export function ShoppingCartProvider({children} : ShoppingCartProviderProps) {
     }
 
     function increaseCartQuantity(id: number) {
+        const product = productData.find(p => p.id === id);
+        if (!product) return;
+
+        const discount = product.discount || 0;
+        const discountPrice = product.price * (1 - discount / 100);
+
         setCartItems(currItems => {
             if (currItems.find(item => item.id === id) == null) {
-                return [...currItems, { id: id, quantity: 1, name: productData[id - 1].name, price: productData[id - 1].price }];
+                return [...currItems, { id: id, quantity: 1, name: productData[id - 1].name, price: discountPrice }];
             } else {
                 return currItems.map(item => {
                     if (item.id === id) {
-                        return {...item, quantity: item.quantity + 1, price: productData[id - 1].price * item.quantity + 1};
+                        return {...item, quantity: item.quantity + 1};
                     } else {
                         return item;
                     }
@@ -61,13 +67,19 @@ export function ShoppingCartProvider({children} : ShoppingCartProviderProps) {
     }
 
     function decreaseCartQuantity(id: number) {
+        const product = productData.find(p => p.id === id);
+        if (!product) return;
+
+        const discount = product.discount || 0;
+        const discountPrice = product.price * (1 - discount / 100);
+
         setCartItems(currItems => {
             if (currItems.find(item => item.id === id)?.quantity == 1) {
                 return currItems.filter(item => item.id !== id);
             } else {
                 return currItems.map(item => {
                     if (item.id === id) {
-                        return {...item, quantity: item.quantity - 1, price: productData[id - 1].price * (item.quantity - 1) };
+                        return {...item, quantity: item.quantity - 1, price: discountPrice * (item.quantity - 1)};
                     } else {
                         return item;
                     }

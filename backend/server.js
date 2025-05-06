@@ -42,5 +42,5 @@ app.use(loginRoute);
 app.use(formRoute);
 
 app.listen(PORT, () => {
-  console.log('Server radi na http://localhost:5000')
+  console.log('Server radi na: ' + PORT);
 });

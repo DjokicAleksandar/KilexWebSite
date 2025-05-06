@@ -16,8 +16,9 @@ type ProductProps = {
 //za sad sve slike imaju isto ime
 
 const Product = ({ id, name, price, image, available, discount, onOpenSlider} : ProductProps) => {
-    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart()
+    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
     let quantity = getItemQuantity(id);
+    const { openCart } = useShoppingCart();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -46,24 +47,21 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
 
     return (
         <>
-            <Card style={{boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.6) 0px 2px 4px -1px"}} className="item">
+            <Card className="item" style={{border: "none"}}>
 
                 <Card.Img variant="top" 
                     src={image} 
                     style={{objectFit: "cover", cursor: "pointer"}}
                     onClick={() => onOpenSlider(id)}/> 
 
-                {/* <div style={{width: "100%", height: "150px"}}>
-                    <ImageSlider slides={images} desc={desc}/>
-                </div> */}
-
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center mb-2" style={{padding: "0px"}}>
                     
-                    
                     {discount ?
-                        <div className="position-absolute top-0 start-0 fs-2 p-1"
-                            style={{backgroundColor: "#dab684", 
+                        <div className="position-absolute top-0 start-0"
+                            style={{backgroundColor: "rgb(247, 43, 43)", 
                                 color: "white",
+                                padding: "5px 10px",
+                                fontSize: "1.3rem",
                                 borderTopLeftRadius: "5px",
                                 borderBottomRightRadius: "5px"}}>
                             -{discount}%
@@ -96,7 +94,10 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
                     <div>
                         {quantity === 0 ? (
                             <Button 
-                                onClick={() => increaseCartQuantity(id)}
+                                onClick={() => {
+                                    increaseCartQuantity(id);
+                                    openCart();
+                                }}
                                 style={{width: "max-content", color: "white"}} 
                                 className="bg-black mt-1" 
                                 disabled={available? false : true}
@@ -130,15 +131,23 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
                     {/* ------------------------ */}
 
                 </Card.Body>
-                {available? null : <div className="position-absolute p-2 fs-4" 
+                {available? null : <div className="position-absolute" 
                     style={{top: "0", 
                             right: "0", 
-                            color: "white", 
+                            color: "white",
+                            padding: "10px", 
                             whiteSpace: "nowrap",
+                            fontSize: "0.8rem",
                             backgroundColor: "rgb(247, 43, 43)",
                             borderBottomLeftRadius: "5px",
                             borderTopRightRadius: "5px"}}> NEMA NA STANJU </div>}
             </Card>
+            <div
+                style={{width: "80%",
+                    height: "0.5px",
+                    backgroundColor: "black",
+                    margin: "0 auto",
+                    marginTop: "10px"}}></div>
         </>
     )
 }

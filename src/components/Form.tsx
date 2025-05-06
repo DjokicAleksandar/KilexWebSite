@@ -29,10 +29,11 @@ interface FormProps {
         post: boolean;
         phone: boolean;
     };
-    emailFormatError: boolean
+    emailFormatError: boolean;
+    phoneFormatError: boolean;
   }
 
-export function Form({formData, setFormData, formError, emailFormatError}: FormProps) {
+export function Form({formData, setFormData, formError, emailFormatError, phoneFormatError}: FormProps) {
     const isMobile = useIsMobile();
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +69,7 @@ export function Form({formData, setFormData, formError, emailFormatError}: FormP
                         placeholder="Prezime" 
                         name="lastName"
                         id="lastName"
-                        className="w-100 p-1 pl-2 fw-normal bg-white"
+                        className="w-100 p-1 pl-2"
                         style={{height: "50px", fontSize: "1rem", border: "1px solid #dab684", fontWeight: "300"}}
                         onChange={handleChange}
                         value={formData.lastName}/>
@@ -118,7 +119,7 @@ export function Form({formData, setFormData, formError, emailFormatError}: FormP
             </div>
             
             <div className="w-100 pt-2 pb-2">
-                <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Poštanski broj: </h3>
+                <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Poštanski broj: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
                 <input 
                     type="text" 
                     id="posta"
@@ -127,6 +128,7 @@ export function Form({formData, setFormData, formError, emailFormatError}: FormP
                     style={{fontSize: "1rem", height: "50px", border: "1px solid #dab684", fontWeight: "300"}}
                     onChange={handleChange}
                     value={formData.post}/>
+                {formError.post && <div style={{color: "rgb(247, 43, 43)"}}> Morate popuniti ovo polje! </div>}
             </div>
 
             <div className="w-100 pt-2 pb-2">
@@ -142,6 +144,7 @@ export function Form({formData, setFormData, formError, emailFormatError}: FormP
                     onChange={handleChange}
                     value={formData.phone}/>
                 {formError.phone && <div style={{color: "rgb(247, 43, 43)"}}> Morate popuniti ovo polje! </div>}
+                {phoneFormatError ? <div id="phoneFormatError" style={{color: "rgb(247, 43, 43)"}}> Pogrešan format telefonskog broja! </div> : null}
             </div>
 
             <h2 className="pt-2 pb-2 mt-2" style={{fontWeight: "400"}}> 

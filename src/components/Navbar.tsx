@@ -7,7 +7,6 @@ import { Button, Container, Navbar as NavbarBs } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useShoppingCart } from '../context/ShoppingCartContext';
-import { ShoppingCartMenu } from './ShoppingCartMenu';
 
 interface NavbarProps {
     setNavbarHeight: (height: number) => void;
@@ -55,7 +54,7 @@ const Navbar = ( {setNavbarHeight, navbarHeight}: NavbarProps ) => {
         <>
             <NavbarBs ref={navRef} expand={false} className="bg-black d-flex flex-row position-fixed w-100 z-3 p-2">
                 <Container className="w100" style={{paddingLeft: "0px", paddingRight: "0px"}}>
-                    <div onClick={toggleMenu} style={{cursor: "pointer"}}> <img src={menu} width="35px" height="35px"/> </div>
+                    <div onClick={toggleMenu} style={{cursor: "pointer", transition: "0.3s", transform: isMenuOpen ? "rotateZ(90deg)" : "rotateZ(0deg)"}}> <img src={menu} width="35px" height="35px"/> </div>
                     <div> <img src={logoTransparent} width="70px" height="55px"/> </div>
 
                     {isHomePage ?

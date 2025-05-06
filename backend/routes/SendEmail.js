@@ -24,7 +24,7 @@ function isValidEmail(email) {
 }
 
 router.post("/send-email", async (req, res) => {
-    const { formData, cartItems, today } = req.body;
+    const { formData, cartItems, today } = req.body; //i argsForPdf
   
     if (!formData.email || !formData.name || !formData.adress || !cartItems || cartItems.length === 0) {
       return res.status(400).json({ message: "Nedostaju podaci!" });
@@ -35,7 +35,7 @@ router.post("/send-email", async (req, res) => {
     }
   
     const date = `${today.day}. ${today.month}. ${today.year}`;
-    let totalPrice = 0;
+    let totalPrice = 300;
 
     cartItems.forEach(item => {
         totalPrice += item.price;
@@ -58,6 +58,7 @@ router.post("/send-email", async (req, res) => {
         <h2 style="color: black;">Pozdrav, ${formData.name}!</h2>
         <h3 style="color: black;">Hvala što ste poručili iz naše prodavnice. Detalji porudžbine su:</h3>
         <table style="font-size: 20px; color: black;">${productList}</table>
+        <h3 style="color: black;">Dostava: <strong> 300 </strong> RSD</h3>
         <h3 style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice} </strong> RSD</h3>
         <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${today.time} </strong> </p>
         <p style="color: black;">Adresa dostave: <strong>${formData.adress}</strong></p>

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import productData from "../data/products.json";
+import { useIsMobile } from "../hooks/useIsMobile";
+import leftArrow from "../assets/images/leftArrow.png";
+import rightArrow from "../assets/images/rightArrow.png";
 
 type ImageSliderProps = {
     setShowSlider: () => void;
@@ -9,6 +12,7 @@ type ImageSliderProps = {
 const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
+    const isMobile = useIsMobile();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -47,13 +51,16 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
 
     const slideStyles = {
         backgroundImage: `url(${images[currentIndex]})`,
-        borderRadius: "10px",
         backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
         objectFit: "cover",
         margin: "0 auto",
-        width: "350px",
-        height: "200px"
+        width: "90%",
+        flex: "1 0 100%",
+        aspectRatio: "16/9",
+        scrollSnapType: "x mandatory",
+        scrollBehavior: "smooth"
     }
     
     return (
@@ -65,11 +72,23 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
             {/* content */}
             <div 
                 onClick={(e) => e.stopPropagation()}
-                className={`position-fixed top-50 start-50 translate-middle bg-light 
-                    d-flex justify-content-center align-items-center flex-column gap-4`}
-                style={{width: "90%"}}>
+                className={`position-fixed top-50 start-50 translate-middle
+                    d-flex justify-content-center align-items-center flex-column gap-2 px-3`}
+                style={{width: isMobile ? "95%" : "max-content", backgroundColor: "white"}}>
 
-                <div>{name}</div>
+                {/* close button */}
+                <p className="position-absolute" 
+                    style={{color: "#dab684", top: "-25px", right: "0", cursor: "pointer", fontWeight: "300", textDecoration: "underline"}}
+                    onClick={handleClose}>
+                    ZATVORI X
+                </p>
+
+                <div 
+                    style={{fontSize: "2rem", 
+                    width: "90%", 
+                    textAlign: "center", 
+                    padding: "10px 20px 10px 20px",
+                    borderBottom: "1px solid #0f0904"}}>{name}</div>
 
                 <div 
                     className="position-relative"
@@ -78,10 +97,18 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
                     <div 
                         onClick={handleLeftClick}
                         className="position-absolute"
-                        style={{top: "50%", transform: "translate(0, -50%)", left: "-32px", fontSize: "45px", zIndex: "1", cursor: "pointer"}}> L
+                        style={{top: "50%", transform: "translate(0, -50%)", left: "-32px", fontSize: "45px", zIndex: "1", cursor: "pointer"}}>
+                        <img width="35px" height="35px" src={leftArrow}/>
                     </div>
 
-                    <div className="d-flex justify-content-center gap-2 mt-2" style={{position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)"}}>
+                    <div className="d-flex justify-content-center gap-3 mt-2 w-100 p-1" 
+                        style={{position: "absolute", 
+                            bottom: "-20px", 
+                            left: "50%", 
+                            transform: "translateX(-50%)", 
+                            scrollBehavior: "smooth",
+                            scrollSnapType: "x mandatory",
+                            overflowX: "auto"}}>
                         {images.map((slide, index) => (
                             <div 
                                 onClick={() => handleDotClick(index)}
@@ -89,8 +116,8 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
                                 style={{width: "10px", 
                                     height: "10px", 
                                     borderRadius: "50%", 
-                                    backgroundColor: index === currentIndex ? "#dab684" : "black", 
-                                    transform: `scale(${index === currentIndex ? "1.3" : "1"})`,
+                                    backgroundColor: index === currentIndex ? "#B39167" : "#dab684", 
+                                    transform: `scale(${index === currentIndex ? "1.2" : "1"})`,
                                     cursor: "pointer"}}></div>
                         ))}
                     </div>
@@ -98,13 +125,14 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
                     <div 
                         onClick={handleRightClick}
                         className="position-absolute"
-                        style={{top: "50%", transform: "translate(0, -50%)", right: "-32px", fontSize: "45px", zIndex: "1", cursor: "pointer"}}> R 
+                        style={{top: "50%", transform: "translate(0, -50%)", right: "-32px", fontSize: "45px", zIndex: "1", cursor: "pointer"}}> 
+                        <img width="35px" height="35px" src={rightArrow}/>
                     </div>
 
                 </div>
                 
 
-                <div>
+                <div className="mt-4 pb-3">
                     {desc}
                 </div>
 

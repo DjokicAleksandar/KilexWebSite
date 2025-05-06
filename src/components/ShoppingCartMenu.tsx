@@ -20,7 +20,6 @@ export function ShoppingCartMenu({isOpen} : ShoppingCartMenuProps) {
         navigate("/cart");
         closeCart();
     }
-    
 
     return (
 
@@ -45,7 +44,7 @@ export function ShoppingCartMenu({isOpen} : ShoppingCartMenuProps) {
                         style={{borderTop: "1px solid black", borderBottom: "1px solid black"}}>
                         Ukupno: {formatPrice(cartItems.reduce((total: number, cartItem) => {
                             const item = productData.find(i => i.id === cartItem.id);
-                            return total + (item?.price || 0) * cartItem.quantity;
+                            return total + (item?.discount ? item.price * (1 - item.discount / 100) : item?.price || 0) * cartItem.quantity;
                         }, 0))}
                     </div>
 
