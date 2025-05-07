@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import logo from "../..public/images/logoTransparent.png";
+import logo from "../../public/images/logoTransparent.png";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { useNavigate } from "react-router-dom";
 
 interface PopupProps {
     type: "loading" | "error" | "success" | "idle";
@@ -9,10 +10,20 @@ interface PopupProps {
 const Popup = ({type}: PopupProps) => {
     const isMobile = useIsMobile();
     const [isVisible, setIsVisible] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (type !== "idle") {
             const timeout = setTimeout(() => setIsVisible(true), 10);
+
+            if (type === "success") {
+                const navigateTimeout = setTimeout(() => {
+                    navigate("/");
+                }, 2000);
+    
+                return () => clearTimeout(navigateTimeout);
+            }
+
             return () => clearTimeout(timeout);
         } else {
             setIsVisible(false);

@@ -1,5 +1,5 @@
-import imageMobile1 from "../..public/images/logoBackground.jpg";
-import imageMobile2 from "../..public/images/naslovnaSlika2.webp"; 
+import imageMobile1 from "../../public/images/logoBackground.jpg";
+import imageMobile2 from "../../public/images/naslovnaSlika2.webp"; 
 import { useRef, useEffect } from "react";
 
 interface WelcomeImageProps {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import productData from "../data/products.json";
 import { useIsMobile } from "../hooks/useIsMobile";
-import leftArrow from "../..public/images/leftArrow.png";
-import rightArrow from "../..public/images/rightArrow.png";
+import leftArrow from "../../public/images/leftArrow.png";
+import rightArrow from "../../public/images/rightArrow.png";
 
 type ImageSliderProps = {
     setShowSlider: () => void;

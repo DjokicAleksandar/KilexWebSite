@@ -1,7 +1,7 @@
 import menu from '../../public/images/menu1.png';
-import logoTransparent from '../..public/images/logoTransparent.png';
-import cart from '../..public/images/cart1.png';
-import back from "../..public/images/backarrow.png";
+import logoTransparent from '../../public/images/logoTransparent.png';
+import cart from '../../public/images/cart1.png';
+import back from "../../public/images/backarrow.png";
 import DropdownMenu from './DropdownMenu';
 import { Button, Container, Navbar as NavbarBs } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';

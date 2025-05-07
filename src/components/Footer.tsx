@@ -1,7 +1,7 @@
-import logoTransparent from "../..public/images/logoTransparent.png";
-import whatsapp from "../..public/images/whatsapp.png";
-import instagram from "../..public/images/instagram.png";
-import email from "../..public/images/email.png";
+import logoTransparent from "../../public/images/logoTransparent.png";
+import whatsapp from "../../public/images/whatsapp.png";
+import instagram from "../../public/images/instagram.png";
+import email from "../../public/images/email.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
