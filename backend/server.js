@@ -12,8 +12,11 @@ const PORT = process.env.PORT || 5000;
 
 require("dotenv").config();
 
+//http://localhost:5174/KilexWebSite
+//https://djokicaleksandar.github.io
+
 const corsOptions = {
-  origin: "https://djokicaleksandar.github.io", // frontend
+  origin: ["http://localhost:5174/KilexWebSite", "https://djokicaleksandar.github.io"], // frontend
   credentials: true,
 };
 
