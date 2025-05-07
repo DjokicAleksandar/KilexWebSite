@@ -268,7 +268,7 @@ function Cart() {
                             <h5 style={{fontWeight: "400", fontSize: "1.1rem"}}> Snosi ih kupac, naplaćuju se po cenovniku kurirske službe </h5>
                         </div>
                     </div>
-                    <h5 className="mt-2 mb-2 p-2" style={{fontWeight: "500"}}> Podaci koje ste nam dostavili će biti korišćeni prilikom procesuiranja Vaše narudžbine u 
+                    <h5 className="mt-2 mb-2 p-2" style={{fontWeight: "500", fontSize: "1rem"}}> Podaci koje ste nam dostavili će biti korišćeni prilikom procesuiranja Vaše narudžbine u 
                         skladu sa našom <Link to={"/PrivacyPolicy"} style={{color: "#dab684", textDecoration: "none"}}> politikom privatnosti. </Link> </h5>
                 
                     <button 

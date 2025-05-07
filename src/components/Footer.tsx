@@ -2,6 +2,7 @@ import logoTransparent from "../../public/images/logoTransparent.png";
 import whatsapp from "../../public/images/whatsapp.png";
 import instagram from "../../public/images/instagram.png";
 import email from "../../public/images/email.png";
+import tiktok from "../../public/images/tiktok.png";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "../hooks/useIsMobile";
 
@@ -9,19 +10,24 @@ const Footer = () => {
     const isMobile = useIsMobile();
 
     return (
-        <div className={`w-100 bg-black mt-12 d-flex flex-column justify-content-space-around align-items-center gap-${isMobile ? "4" : "5"} position-relative`}
+        <div className={`w-100 bg-black mt-3 d-flex flex-column justify-content-space-around align-items-center gap-${isMobile ? "4" : "5"} position-relative`}
             style={{left: "0",
                     bottom: "0",
                     padding: isMobile ? "10px" : "20px"
                 }}>
 
-            <div className="d-flex justify-content-between align-items-center gap-5 pb-2 pr-2 pl-2 z-1" 
+            <div className="d-flex justify-content-between align-items-center gap-5 pb-2 pr-2 pl-2 z-1 mt-2" 
                 style={{borderBottom: "1px solid #dab684", width: "90%"}}>
                 <div className="d-flex flex-column gap-2 justify-content-center">
                     <img src={logoTransparent} height={isMobile ? "50px" : "80px"}/> 
                 </div>
 
                 <div className="d-flex"> 
+                    <div className="d-flex p-1 align-items-center"> 
+                        <a href="https://www.tiktok.com/@kkkkkkile?_t=ZM-8wAJeTY6sgo&_r=1" className="d-flex align-items-center justify-content-center text-decoration-none">
+                            <img src={tiktok} width="30px" height="30px"/>
+                        </a>
+                    </div>
                     <div className="d-flex p-1 align-items-center"> 
                         <a href="https://wa.me/381628429330" className="d-flex align-items-center justify-content-center text-decoration-none">
                             <img src={whatsapp} width="30px" height="30px"/>

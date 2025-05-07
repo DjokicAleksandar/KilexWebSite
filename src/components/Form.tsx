@@ -41,7 +41,7 @@ export function Form({formData, setFormData, formError, emailFormatError, phoneF
           ...prev,
           [e.target.name]: e.target.value
         }));
-      };
+    };
 
     return (
         <div className="w-100" style={{height: "max-content", padding: isMobile ? "10px" : "30px"}}>
@@ -136,7 +136,7 @@ export function Form({formData, setFormData, formError, emailFormatError, phoneF
                 <input 
                     type="tel" 
                     pattern="^06[0-9]{7,9}$" 
-                    placeholder="Broj telefona" 
+                    placeholder="06x xxx xxxx" 
                     name="phone"
                     id="phone"
                     className="w-100 p-1 pl-2"
@@ -147,9 +147,9 @@ export function Form({formData, setFormData, formError, emailFormatError, phoneF
                 {phoneFormatError ? <div id="phoneFormatError" style={{color: "rgb(247, 43, 43)"}}> Pogrešan format telefonskog broja! </div> : null}
             </div>
 
-            <h2 className="pt-2 pb-2 mt-2" style={{fontWeight: "400"}}> 
+            <h4 className="pt-2 pb-2 mt-2" style={{fontWeight: "400"}}> 
                 Polja pored kojih stoji <div className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</div> moraju biti popunjena! 
-            </h2>
+            </h4>
 
         </div>
     )

@@ -6,7 +6,7 @@ function TermsOfService() {
 
             <h5 style={{fontWeight: "300", margin: "10px 0px", width: "90%", fontSize: "1.2rem"}}> Poštovani potrošači,
                 <br/>
-                Kilex TR, Stajkovce bb, Republika Srbija, matični broj: xxxxxxx, PIB: xxxxxxx,
+                Kilex TR, Stajkovce bb, Republika Srbija, matični broj: 67821262, PIB: 114743978,
                 (u daljem tekstu: Kilex) vrši prodaju proizvoda iz svog proizvodnog 
                 asortimana putem on-line prodavnice koja se nalazi na sajtu www.kilex.shop.
                 <br/>

@@ -24,7 +24,7 @@ export function ShoppingCartMenu({isOpen} : ShoppingCartMenuProps) {
     return (
 
         <Offcanvas show={isOpen} onHide={closeCart} placement="end" 
-            style={{width: isMobile ? "85%" : "400px",
+            style={{width: isMobile ? "90%" : "400px",
                 maxWidth: "800px"}}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Vaša korpa</Offcanvas.Title>
@@ -49,13 +49,13 @@ export function ShoppingCartMenu({isOpen} : ShoppingCartMenuProps) {
                     </div>
 
                     <div className="w-100 d-flex flex-column gap-3">
-                        {<Button variant="outline-none" className="fs-4 pt-2 pb-2 px-4 w-100" 
-                            style={{backgroundColor: "#0f0904", color: "#FFF", cursor: "pointer"}}
+                        {<Button variant="outline-none" className="fs-5 pt-1 pb-1 px-2 w-100" 
+                            style={{backgroundColor: "#0f0904", color: "#FFF", cursor: "pointer", borderRadius: "0px"}}
                             onClick={handleFinishPurchase}
                             disabled={cartItems.length > 0 ? false : true}> Završi kupovinu </Button>}
 
-                        <Button variant="outline-none" className="fs-4 pt-2 pb-2 px-4 w-100"
-                            style={{backgroundColor: "#dab684", color: "#FFF", cursor: "pointer"}}
+                        <Button variant="outline-none" className="fs-5 pt-1 pb-1 px-2 w-100"
+                            style={{backgroundColor: "#dab684", color: "#FFF", cursor: "pointer", borderRadius: "0px"}}
                             onClick={closeCart}> Nastavi kupovinu </Button>
                     </div>
                 </div>

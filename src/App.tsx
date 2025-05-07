@@ -9,10 +9,12 @@ import AdminDashboard from "./pages/AdminDashboard.tsx";
 import { Routes, Route } from "react-router-dom";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext.tsx";
 import PrivateRoute from './components/PrivateRoute.tsx';
+import ScrollToTop from './components/ScrollToTop.tsx';
 
 function App() {
   return (
     <ShoppingCartProvider>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Layout/>}> 
           <Route index element={<Home/>} />

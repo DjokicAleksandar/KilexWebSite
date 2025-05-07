@@ -2,27 +2,27 @@
     {
         "id": 1,
         "name": "W1",
-        "price": 450,
+        "price": 529,
         "image": "images/eyelashes/W1.png",
         "images": ["images/eyelashes/W1.png", "images/eyelashes/W1-2.png", "images/eyelashes/W1-3.png"],
         "description": "Opis trepavice ...",
         "discount": 0,
-        "available": 0
+        "available": 1
     },
     {
         "id": 2,
         "name": "F1",
-        "price": 550,
+        "price": 529,
         "image": "images/eyelashes/F1.png",
         "images": ["images/eyelashes/F1.png", "images/eyelashes/F1-2.png", "images/eyelashes/F1-3.png"],
         "description": "Opis trepavice ...",
-        "discount": 10,
+        "discount": 0,
         "available": 1
     },
     {
         "id": 3,
         "name": "S1",
-        "price": 490,
+        "price": 489,
         "image": "images/eyelashes/S1.png",
         "images": ["images/eyelashes/S1.png", "images/eyelashes/S1-2.png", "images/eyelashes/S1-3.png"],
         "description": "Opis trepavice ...",
@@ -32,7 +32,7 @@
     {
         "id": 4,
         "name": "K1",
-        "price": 500,
+        "price": 489,
         "image": "images/eyelashes/K1.png",
         "images": ["images/eyelashes/K1.png", "images/eyelashes/K1-2.png", "images/eyelashes/K1-3.png"],
         "description": "Opis trepavice ...",
@@ -42,7 +42,7 @@
     {
         "id": 5,
         "name": "K2",
-        "price": 670,
+        "price": 489,
         "image": "images/eyelashes/K2.png",
         "images": ["images/eyelashes/K2.png", "images/eyelashes/K2-2.png", "images/eyelashes/K2-3.png"],
         "description": "Opis trepavice ...",
@@ -51,8 +51,8 @@
     },
     {
         "id": 6,
-        "name": "Individualne short",
-        "price": 450,
+        "name": "Individualne SHORT",
+        "price": 549,
         "image": "images/eyelashes/SHORT.png",
         "images": ["images/eyelashes/SHORT.png", "images/eyelashes/SHORT-2.png", "images/eyelashes/SHORT-3.png"],
         "description": "Opis trepavice ...",
@@ -61,8 +61,8 @@
     },
     {
         "id": 7,
-        "name": "Individualne medium",
-        "price": 550,
+        "name": "Individualne MEDIUM",
+        "price": 549,
         "image": "images/eyelashes/MEDIUM.png",
         "images": ["images/eyelashes/MEDIUM.png", "images/eyelashes/MEDIUM-2.png", "images/eyelashes/MEDIUM-3.png"],
         "description": "Opis trepavice ...",
@@ -71,8 +71,8 @@
     },
     {
         "id": 8,
-        "name": "Individualne long",
-        "price": 490,
+        "name": "Individualne LONG",
+        "price": 549,
         "image": "images/eyelashes/LONG.png",
         "images": ["images/eyelashes/LONG.png", "images/eyelashes/LONG-2.png", "images/eyelashes/LONG-3.png"],
         "description": "Opis trepavice ...",
@@ -82,7 +82,7 @@
     {
         "id": 9,
         "name": "F1 Multipack",
-        "price": 500,
+        "price": 1729,
         "image": "images/eyelashes/F1-MULTIPACK.png",
         "images": ["images/eyelashes/F1-MULTIPACK.png", "images/eyelashes/F1-MULTIPACK-3.png", "images/eyelashes/F1-MULTIPACK-4.png"],
         "description": "Opis trepavice ...",

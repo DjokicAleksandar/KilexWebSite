@@ -3,11 +3,12 @@ function PrivacyPolicy() {
         <div className="w-100 h-100 d-flex justify-content-center align-items-center flex-column mb-3 mt-3">
 
             <h1 style={{padding: "10px 0px", width: "90%", borderBottom: "1px solid #dab684", fontSize: "2rem"}}> Politika privatnosti </h1>
-
-            <h5 style={{width: "90%", padding: "10px 0px", fontWeight: "300", fontSize: "1.2rem"}}> Ovom Politikom privatnosti Kilex TR, Vlasotince (u daljem tekstu: ,,Kilex“ ili ,,mi“) 
-                Vas obaveštava o obradi Vaših ličnih podataka (u daljem tekstu: ,,Podaci“) prilikom poručivanja i kupovine proizvoda na sajtu
-                www.kilex.shop kao i o Vašim pravima i zahtevima za zaštitu podataka u skladu sa Zakonom o zaštiti podataka o ličnosti u Srbiji 
-                i the General Data Protection Regulation (EU) 2016/679 (GDPR) – Opšta uredba o zaštiti podataka o ličnosti EU, kako sledi: </h5>
+            <div style={{width: "90%", padding: "10px 0px", fontWeight: "300"}}>
+                <h5 style={{padding: "10px 0px", fontWeight: "300", fontSize: "1.2rem"}}> Ovom Politikom privatnosti Kilex TR, Vlasotince (u daljem tekstu: ,,Kilex“ ili ,,mi“) 
+                    Vas obaveštava o obradi Vaših ličnih podataka (u daljem tekstu: ,,Podaci“) prilikom poručivanja i kupovine proizvoda na sajtu
+                    www.kilex.shop kao i o Vašim pravima i zahtevima za zaštitu podataka u skladu sa Zakonom o zaštiti podataka o ličnosti u Srbiji 
+                    i the General Data Protection Regulation (EU) 2016/679 (GDPR) – Opšta uredba o zaštiti podataka o ličnosti EU, kako sledi: </h5>
+            </div>
 
             <div style={{width: "90%", padding: "10px 0px", fontWeight: "300"}}>
                 <h2 style={{borderBottom: "1px solid #dab684", padding: "10px 0px"}}> Podaci koje prikupljamo </h2>

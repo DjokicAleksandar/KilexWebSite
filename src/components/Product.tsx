@@ -2,6 +2,7 @@ import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useEffect } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { formatPrice } from "../utilities/formatPrice";
 
 type ProductProps = {
     id: number
@@ -80,14 +81,14 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
                             { 
                                 discount? 
                                     <span>
-                                        <span className="fs-3"> {price - ((discount / 100) * price)} RSD </span>
+                                        <span className="fs-3"> {formatPrice(price - ((discount / 100) * price))} </span>
                                         <span className="danger" 
                                             style={{textDecoration: "line-through", color: "rgb(247, 43, 43)"}}> 
-                                            {price} RSD 
+                                            {formatPrice(price)} 
                                         </span> 
                                     </span>
                                     : 
-                                    <span className="fs-3"> {price} RSD </span>
+                                    <span className="fs-3"> {formatPrice(price)} </span>
                             } 
                         </span> 
                     </Card.Title>
