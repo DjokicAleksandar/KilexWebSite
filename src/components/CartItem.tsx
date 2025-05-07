@@ -24,7 +24,7 @@ export function CartItem({id, quantity, variant = "home"}: CartItemProps ) {
 
                 <div style={{ width: isMobile ? "120px" : "140px", flexShrink: 0}}>
                     <img
-                    src={`/${item.image}`}
+                    src={`${item.image}`}
                     alt={item.name}
                     className="img-fluid"
                     style={{ objectFit: "cover", height: "70px", width: "100%" }}
