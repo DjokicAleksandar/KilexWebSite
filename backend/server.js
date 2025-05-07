@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 require("dotenv").config();
 
 const corsOptions = {
-  origin: "https://kilexwebsite.onrender.com", // frontend
+  origin: "https://djokicaleksandar.github.io", // frontend
   credentials: true,
 };
 
