@@ -41,7 +41,7 @@ function ProductList({top}: ProductListProps) {
                                 id={item.id} 
                                 name={item.name} 
                                 price={item.price} 
-                                image={`${import.meta.env.BASE_URL}${item.image}`} 
+                                image={`${import.meta.env.BASE_URL}/${item.image}`} 
                                 available={item.available} 
                                 discount={item.discount}
                                 onOpenSlider={handleOpenSlider}/> 
