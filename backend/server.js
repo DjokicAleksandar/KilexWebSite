@@ -16,7 +16,7 @@ require("dotenv").config();
 //https://djokicaleksandar.github.io
 
 const corsOptions = {
-  origin: ["http://localhost:5174/KilexWebSite", "https://djokicaleksandar.github.io"], // frontend
+  origin: ["http://localhost:5174", "https://djokicaleksandar.github.io"], // frontend
   credentials: true,
 };
 
