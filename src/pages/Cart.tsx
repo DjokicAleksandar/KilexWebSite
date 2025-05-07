@@ -9,8 +9,7 @@ import truck from "../../public/images/truck.png";
 import clock from "../../public/images/clock.png";
 import wallet from "../../public/images/wallet.png";
 import { formatPrice } from "../utilities/formatPrice";
-import { Link, useNavigate } from "react-router-dom";
-import { GeneratePDF } from "../utilities/generatePdf";
+import { Link, useNavigate } from "react-router-dom"
 
 type CartItem = {
     id: number
@@ -127,6 +126,8 @@ function Cart() {
             cartItems,
             today: today
         };
+
+        const { GeneratePDF } = await import("../utilities/generatePdf");
 
         const pdf = await GeneratePDF({
             name: formData.name,
