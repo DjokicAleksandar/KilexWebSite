@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/images/logoTransparent.png";
+import logo from "../..public/images/logoTransparent.png";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 interface PopupProps {

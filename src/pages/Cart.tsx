@@ -5,9 +5,9 @@ import { Container } from "react-bootstrap";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { validateForm } from "../utilities/validateForm";
 import Popup from "../components/Popup";
-import truck from "../assets/images/truck.png";
-import clock from "../assets/images/clock.png";
-import wallet from "../assets/images/wallet.png";
+import truck from "../..public/images/truck.png";
+import clock from "../..public/images/clock.png";
+import wallet from "../..public/images/wallet.png";
 import { formatPrice } from "../utilities/formatPrice";
 import { Link, useNavigate } from "react-router-dom";
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import productData from "../data/products.json";
 import { useIsMobile } from "../hooks/useIsMobile";
-import leftArrow from "../assets/images/leftArrow.png";
-import rightArrow from "../assets/images/rightArrow.png";
+import leftArrow from "../..public/images/leftArrow.png";
+import rightArrow from "../..public/images/rightArrow.png";
 
 type ImageSliderProps = {
     setShowSlider: () => void;
@@ -50,7 +50,7 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
     const images = productData.find((product) => product.id === id)?.images || [];
 
     const slideStyles = {
-        backgroundImage: `url(${images[currentIndex]})`,
+        backgroundImage: `url(${import.meta.env.BASE_URL}${images[currentIndex]})`,
         backgroundPosition: "center",
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
