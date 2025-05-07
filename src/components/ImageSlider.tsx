@@ -50,7 +50,7 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
     const images = productData.find((product) => product.id === id)?.images || [];
 
     const slideStyles = {
-        backgroundImage: `url(${import.meta.env.BASE_URL}/${images[currentIndex]})`,
+        backgroundImage: `url(/${images[currentIndex]})`,
         backgroundPosition: "center",
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
