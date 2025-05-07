@@ -24,7 +24,7 @@ function isValidEmail(email) {
 }
 
 router.post("/send-email", async (req, res) => {
-    const { formData, cartItems, today } = req.body; //i argsForPdf
+    const { formData, cartItems, today, pdf } = req.body; //i argsForPdf
   
     if (!formData.email || !formData.name || !formData.adress || !cartItems || cartItems.length === 0) {
       return res.status(400).json({ message: "Nedostaju podaci!" });
@@ -64,13 +64,13 @@ router.post("/send-email", async (req, res) => {
         <p style="color: black;">Adresa dostave: <strong>${formData.adress}, ${formData.post} - ${formData.city}</strong></p>
         <p style="color: black;">Vaša porudžbina će uskoro biti obrađena.</p>
       `,
-    //   attachments: [
-    //       {
-    //           filename: "faktura.pdf",
-    //           content: Buffer.from(argsForPDF, "base64"),
-    //           encoding: "base64",
-    //       }
-    //   ]
+      attachments: [
+          {
+              filename: "faktura.pdf",
+              content: Buffer.from(pdf, "base64"),
+              encoding: "base64",
+          }
+      ]
     };
   
     try {
