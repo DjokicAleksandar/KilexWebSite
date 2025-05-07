@@ -10,6 +10,7 @@ import clock from "../../public/images/clock.png";
 import wallet from "../../public/images/wallet.png";
 import { formatPrice } from "../utilities/formatPrice";
 import { Link, useNavigate } from "react-router-dom";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 type CartItem = {
     id: number
@@ -24,7 +25,8 @@ function Cart() {
     const navigate = useNavigate();
     const API_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    // const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const { cartItems, setCartItems } = useShoppingCart();
     const [emailFormatError, setEmailFormatError] = useState(false);
     const [phoneFormatError, setPhoneFormatError] = useState(false);
     const [popupStatus, setPopupStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
@@ -47,15 +49,14 @@ function Cart() {
         phone: false
     })
 
+    // useEffect(() => {
+    //     const data = localStorage.getItem("shopping-cart");
 
-    useEffect(() => {
-        const data = localStorage.getItem("shopping-cart");
-
-        if (data) {
-            console.log(data)
-            setCartItems(JSON.parse(data));
-        }
-    }, []);
+    //     if (data) {
+    //         console.log(data)
+    //         setCartItems(JSON.parse(data));
+    //     }
+    // }, []);
 
     useEffect(() => {
         if (popupStatus !== "idle") {
@@ -71,7 +72,7 @@ function Cart() {
 
     useEffect(() => {
         if (popupStatus === "success" || popupStatus === "error") {
-          const timeout = setTimeout(() => setPopupStatus("idle"), 3000);
+          const timeout = setTimeout(() => setPopupStatus("idle"), 4000);
           return () => clearTimeout(timeout);
         }
     }, [popupStatus]);
@@ -81,7 +82,15 @@ function Cart() {
     })
 
     function ClearInputs() {
-        //setFormData
+        setFormData({
+            name: "",
+            lastName: "",
+            email: "",
+            city: "",
+            adress: "",
+            post: "",
+            phone: ""
+        })
     }
 
     const handleOnClick = async () => {
@@ -163,9 +172,6 @@ function Cart() {
             localStorage.removeItem("shopping-cart");
             
             setCartItems([]);
-            setTimeout(() => {
-                navigate("/");
-            }, 2000)
         } catch (error) {
             setPopupStatus("error");
             console.error("Greska tokom slanja: ", error);

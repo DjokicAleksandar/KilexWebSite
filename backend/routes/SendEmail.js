@@ -61,7 +61,7 @@ router.post("/send-email", async (req, res) => {
         <h3 style="color: black;">Dostava: <strong> 300 </strong> RSD</h3>
         <h3 style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice} </strong> RSD</h3>
         <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${today.time} </strong> </p>
-        <p style="color: black;">Adresa dostave: <strong>${formData.adress}</strong></p>
+        <p style="color: black;">Adresa dostave: <strong>${formData.adress}, ${formData.post} - ${formData.city}</strong></p>
         <p style="color: black;">Vaša porudžbina će uskoro biti obrađena.</p>
       `,
     //   attachments: [

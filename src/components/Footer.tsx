@@ -3,8 +3,11 @@ import whatsapp from "../../public/images/whatsapp.png";
 import instagram from "../../public/images/instagram.png";
 import email from "../../public/images/email.png";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const Footer = () => {
+    const isMobile = useIsMobile();
+
     return (
         <div className="w-100 bg-black mt-12 d-flex flex-column justify-content-space-around align-items-center gap-5 position-relative" 
             style={{left: "0",
@@ -20,7 +23,7 @@ const Footer = () => {
 
                 <div className="d-flex"> 
                     <div className="d-flex p-1 align-items-center"> 
-                        <a href="https://wa.me/381621767144" className="d-flex align-items-center justify-content-center text-decoration-none">
+                        <a href="https://wa.me/381628429330" className="d-flex align-items-center justify-content-center text-decoration-none">
                             <img src={whatsapp} width="40px" height="40px"/>
                         </a>
                     </div>
@@ -37,7 +40,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="d-flex justify-content-between z-1" style={{width: "90%"}}>
+            <div className={`d-flex justify-content-between z-1 ${isMobile ? "gap-2" : ""}`} style={{width: "90%"}}>
                 <div>
                     <h4 className="mb-2 fw-normal" style={{color: "#dab684", whiteSpace: "nowrap"}}> Uslovi korišćenja </h4>
                     <div className="d-flex gap-1 flex-column">
