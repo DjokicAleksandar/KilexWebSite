@@ -25,6 +25,7 @@ function isValidEmail(email) {
 
 router.post("/send-email", async (req, res) => {
     const { formData, cartItems, today, pdf } = req.body; //i argsForPdf
+    console.log(pdf);
   
     if (!formData.email || !formData.name || !formData.adress || !cartItems || cartItems.length === 0) {
       return res.status(400).json({ message: "Nedostaju podaci!" });

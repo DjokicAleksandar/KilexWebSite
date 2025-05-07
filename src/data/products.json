@@ -51,7 +51,7 @@
     },
     {
         "id": 6,
-        "name": "Short",
+        "name": "Individualne short",
         "price": 450,
         "image": "images/eyelashes/SHORT.png",
         "images": ["images/eyelashes/SHORT.png", "images/eyelashes/SHORT-2.png", "images/eyelashes/SHORT-3.png"],
@@ -61,7 +61,7 @@
     },
     {
         "id": 7,
-        "name": "Medium",
+        "name": "Individualne medium",
         "price": 550,
         "image": "images/eyelashes/MEDIUM.png",
         "images": ["images/eyelashes/MEDIUM.png", "images/eyelashes/MEDIUM-2.png", "images/eyelashes/MEDIUM-3.png"],
@@ -71,7 +71,7 @@
     },
     {
         "id": 8,
-        "name": "Long",
+        "name": "Individualne long",
         "price": 490,
         "image": "images/eyelashes/LONG.png",
         "images": ["images/eyelashes/LONG.png", "images/eyelashes/LONG-2.png", "images/eyelashes/LONG-3.png"],

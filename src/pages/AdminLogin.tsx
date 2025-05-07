@@ -6,11 +6,13 @@ const AdminLogin = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:5000/admin-login", {
+            const res = await fetch(`${API_URL}/admin-login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

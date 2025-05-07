@@ -10,7 +10,7 @@ import clock from "../../public/images/clock.png";
 import wallet from "../../public/images/wallet.png";
 import { formatPrice } from "../utilities/formatPrice";
 import { Link, useNavigate } from "react-router-dom";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { GeneratePDF } from "../utilities/generatePdf";
 
 type CartItem = {
     id: number
@@ -25,8 +25,7 @@ function Cart() {
     const navigate = useNavigate();
     const API_URL = import.meta.env.VITE_API_BASE_URL;
 
-    // const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const { cartItems, setCartItems } = useShoppingCart();
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [emailFormatError, setEmailFormatError] = useState(false);
     const [phoneFormatError, setPhoneFormatError] = useState(false);
     const [popupStatus, setPopupStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
@@ -49,14 +48,14 @@ function Cart() {
         phone: false
     })
 
-    // useEffect(() => {
-    //     const data = localStorage.getItem("shopping-cart");
+    useEffect(() => {
+        const data = localStorage.getItem("shopping-cart");
 
-    //     if (data) {
-    //         console.log(data)
-    //         setCartItems(JSON.parse(data));
-    //     }
-    // }, []);
+        if (data) {
+            console.log(data)
+            setCartItems(JSON.parse(data));
+        }
+    }, []);
 
     useEffect(() => {
         if (popupStatus !== "idle") {
@@ -116,25 +115,41 @@ function Cart() {
         }
 
         const now = new Date();
+        const today = {
+            day: String(now.getDate()).padStart(2, '0'),
+            month: String(now.getMonth() + 1).padStart(2, '0'),
+            year: now.getFullYear(),
+            time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
+        }
+
         const fullData = {
             formData,
             cartItems,
-            today: {
-                day: String(now.getDate()).padStart(2, '0'),
-                month: String(now.getMonth() + 1).padStart(2, '0'),
-                year: now.getFullYear(),
-                time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
-            }
+            today: today
         };
+
+        const pdf = await GeneratePDF({
+            name: formData.name,
+            lastName: formData.lastName,
+            adress: formData.adress,
+            phone: formData.phone,
+            email: formData.email,
+            date: `${fullData.today.day}. ${fullData.today.month}. ${fullData.today.year}`,
+            time: today.time,
+            totalPrice: String(total),
+            productsForPdf: cartItems
+        })
         
         try {   
             setPopupStatus("loading");
-            
-
+            //${API_URL}/send-email
             const response = await fetch(`${API_URL}/send-email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(fullData)
+                body: JSON.stringify({
+                    ...fullData,
+                    pdf: pdf
+                })
             })
 
             const data = await response.json();
@@ -170,7 +185,6 @@ function Cart() {
             ClearInputs();
             setPopupStatus("success");
             localStorage.removeItem("shopping-cart");
-            
             setCartItems([]);
         } catch (error) {
             setPopupStatus("error");

@@ -1,6 +1,7 @@
 import { Button, Card } from "react-bootstrap"; 
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useEffect } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 type ProductProps = {
     id: number
@@ -19,6 +20,7 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
     const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
     let quantity = getItemQuantity(id);
     const { openCart } = useShoppingCart();
+    const isMobile = useIsMobile();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -106,7 +108,7 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
                         ) : <div className="d-flex justify-content-center align-items-center flex-column" style={{gap: "0.5rem"}}> 
                                 <div className="d-flex justify-content-center align-items-center" style={{gap: "0.5rem"}}> 
                                     <Button 
-                                        style={{width: "40px", height: "40px", backgroundColor: "#dab684", color: "white"}}
+                                        style={{width: isMobile ? "30px" : "40px", height: isMobile ? "30px" : "40px", backgroundColor: "#dab684", color: "white"}}
                                         className="rounded-circle d-flex justify-content-center align-items-center fw-bold fs-3"
                                         variant="outline-none"
                                         onClick={() => decreaseCartQuantity(id)}>-
@@ -115,7 +117,7 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
                                         <span className="fs-3"> {quantity} </span> u korpi
                                     </div>
                                     <Button 
-                                        style={{width: "40px", height: "40px", backgroundColor: "#dab684", color: "white"}}
+                                        style={{width: isMobile ? "30px" : "40px", height: isMobile ? "30px" : "40px", backgroundColor: "#dab684", color: "white"}}
                                         className="rounded-circle d-flex justify-content-center align-items-center fw-bold fs-3"
                                         variant="outline-none"
                                         onClick={() => increaseCartQuantity(id)}>+

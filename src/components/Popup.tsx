@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import logo from "../../public/images/logoTransparent.png";
 import { useIsMobile } from "../hooks/useIsMobile";
-import { useNavigate } from "react-router-dom";
 
 interface PopupProps {
     type: "loading" | "error" | "success" | "idle";
@@ -10,19 +9,18 @@ interface PopupProps {
 const Popup = ({type}: PopupProps) => {
     const isMobile = useIsMobile();
     const [isVisible, setIsVisible] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (type !== "idle") {
             const timeout = setTimeout(() => setIsVisible(true), 10);
 
-            // if (type === "success") {
-            //     const navigateTimeout = setTimeout(() => {
-            //         navigate("/");
-            //     }, 4000);
+            if (type === "success") {
+                const navigateTimeout = setTimeout(() => {
+                    window.location.href = "/";
+                }, 4000);
     
-            //     return () => clearTimeout(navigateTimeout);
-            // }
+                return () => clearTimeout(navigateTimeout);
+            }
 
             return () => clearTimeout(timeout);
         } else {
@@ -33,7 +31,7 @@ const Popup = ({type}: PopupProps) => {
     const handleBackgroundClick = () => {
         if (type === "success") {
             setIsVisible(false);
-            navigate("/");
+            window.location.href = "/";
         } else if (type === "error") {
             setIsVisible(false);
         } else return;
@@ -79,7 +77,7 @@ const Popup = ({type}: PopupProps) => {
                         <button 
                             onClick={() => {
                                 setIsVisible(false)
-                                navigate("/");
+                                window.location.href = "/";
                             }}
                             style={{fontSize: "1rem", 
                             backgroundColor: "#0f0904", 

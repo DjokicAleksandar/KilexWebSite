@@ -22,10 +22,12 @@ const AdminDashboard = () => {
     const [inputYear, setInputYear] = useState('');
     const [filter, setFilter] = useState({day: "", month: "", year: ""});
 
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
         const fetchSales = async () => {
             const token = localStorage.getItem("token");
-            const response = await fetch("http://localhost:5000/admin-dashboard", {
+            const response = await fetch(`${API_URL}/admin-dashboard`, {
                 method: "GET",
                 headers: { authorization: `Bearer ${token}` }
             })
