@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kilex shop</title>
-    <script type="module" crossorigin src="/assets/index-D2-M28PN.js"></script>
+    <script type="module" crossorigin src="/assets/index-DXe9evBp.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DTOS9_2v.css">
   </head>
   <body class="bg-white">
@@ -23,4 +23,18 @@
     integrity="sha384-9QixAMPTEl7z5fm5FHL1p++2P5sYumkmuQqVHhimT5HljE4ZFn619Y50L3c3UPCm" 
     crossorigin="anonymous"></script>
   </body>
+
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
 </html>
