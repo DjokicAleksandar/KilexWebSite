@@ -144,7 +144,8 @@ function Cart() {
         try {   
             setPopupStatus("loading");
             //${API_URL}/send-email
-            const response = await fetch(`${API_URL}/send-email`, {
+            //http://localhost:5000
+            const response = await fetch(`http://localhost:5000/send-email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -169,19 +170,19 @@ function Cart() {
                 }
             }
 
-            fetch(`${API_URL}/add-sale`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({products: fullData.cartItems})
-            })
-            .then(res => res.json())
-            .then(data => console.log("Sacuvana prodaja: " + data))
-            .catch(err => {
-                console.log("Greska prilikom cuvanja u bazu: " + err);
-                setPopupStatus("error");
-            });
+            // fetch(`${API_URL}/add-sale`, {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({products: fullData.cartItems})
+            // })
+            // .then(res => res.json())
+            // .then(data => console.log("Sacuvana prodaja: " + data))
+            // .catch(err => {
+            //     console.log("Greska prilikom cuvanja u bazu: " + err);
+            //     setPopupStatus("error");
+            // });
 
             ClearInputs();
             setPopupStatus("success");
@@ -233,7 +234,7 @@ function Cart() {
                     className="d-flex justify-content-around pt-2 pb-2"
                     style={{border: "1px solid #dab684"}}>
                     <h5 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Dostava: </h5>
-                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> 300 RSD </h5>
+                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> 300,00 RSD </h5>
                 </div>
 
                 <div 

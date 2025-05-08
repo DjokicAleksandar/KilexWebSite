@@ -22,7 +22,7 @@ export function CartItem({id, quantity, variant = "home"}: CartItemProps ) {
             {/* Slika */}
             <div className={`d-flex ${variant == "cart" ? "ms-3" : ""}`} style={{width: variant == "cart" ? "50%" : ""}}>
 
-                <div style={{ width: isMobile ? "120px" : "140px", flexShrink: 0}}>
+                <div style={{ width: isMobile ? "110px" : "140px", flexShrink: 0}}>
                     <img
                     src={`${item.image}`}
                     alt={item.name}
@@ -47,7 +47,12 @@ export function CartItem({id, quantity, variant = "home"}: CartItemProps ) {
                     </div>
                     )}
 
-                    <div className="text-muted" style={{ fontSize: "1rem", whiteSpace: "nowrap" }}>
+                    <div className="text-muted" 
+                    style={{ fontSize: "1rem", 
+                            whiteSpace: "nowrap", 
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            maxWidth: isMobile ? "60px" : "auto" }}>
                     {formatPrice(item.discount ? item.price * (1 - item.discount / 100) : item.price)}
                     </div>
                 </div>

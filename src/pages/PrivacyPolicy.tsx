@@ -23,11 +23,11 @@ function PrivacyPolicy() {
             </div>
 
             <div style={{width: "90%", padding: "10px 0px", fontWeight: "300"}}>
-                <h2 style={{borderBottom: "1px solid #dab684", padding: "10px 0px"}}> Kako koristimo vaše podatke </h2>
+                <h2 style={{borderBottom: "1px solid #dab684", padding: "10px 0px"}}> Kako koristimo Vaše podatke </h2>
                 <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Prikupljene informacije koristimo isključivo u sledeće svrhe: </h5>
                 <ul> 
                     <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Obrada i slanje narudžbine </li>
-                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Komunikacija sa vama u vezi sa narudžbinom </li>
+                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Komunikacija sa Vama u vezi sa narudžbinom </li>
                 </ul>
                 <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Vaše podatke nećemo koristiti za druge svrhe bez vaše izričite saglasnosti. </h5>
             </div>
@@ -39,22 +39,22 @@ function PrivacyPolicy() {
                     <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Kurirskim službama za dostavu narudžbina </li>
                     <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Nadležnim organima, ukoliko to zakon zahteva </li>
                 </ul>
-                <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Nikada ne prodajemo, iznajmljujemo niti delimo vaše podatke sa trećim stranama u marketinške svrhe. </h5>
+                <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Nikada ne prodajemo, iznajmljujemo niti delimo Vaše podatke sa trećim stranama u marketinške svrhe. </h5>
                 <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Ova veb stranica koristi eksterne resurse <b> samo za optimizaciju performansi i prikazivanje sadržaja. </b> </h5>
             </div>
 
             <div style={{width: "90%", padding: "10px 0px", fontWeight: "300"}}>
                 <h2 style={{borderBottom: "1px solid #dab684", padding: "10px 0px"}}> Sigurnost podataka </h2>
-                <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Primenićemo sve razumne mere kako bismo zaštitili vaše podatke od neovlašćenog pristupa, izmene ili zloupotrebe. </h5>
+                <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Primenićemo sve razumne mere kako bismo zaštitili Vaše podatke od neovlašćenog pristupa, izmene ili zloupotrebe. </h5>
             </div>
 
             <div style={{width: "90%", padding: "10px 0px", fontWeight: "300"}}>
                 <h2 style={{borderBottom: "1px solid #dab684", padding: "10px 0px"}}> Vaša prava </h2>
                 <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Imate pravo da: </h5>
                 <ul>
-                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Zatražite pristup vašim podacima koje čuvamo </li> 
-                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Izmenite ili ažurirate vaše podatke </li>
-                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Zatražite brisanje vaših podataka (osim onih koje zakon nalaže da čuvamo) </li>
+                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Zatražite pristup Vašim podacima koje čuvamo </li> 
+                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Izmenite ili ažurirate Vaše podatke </li>
+                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> Zatražite brisanje Vaših podataka (osim onih koje zakon nalaže da čuvamo) </li>
                 </ul>
                 <h5 style={{fontWeight: "300", padding: "10px 0px", fontSize: "1.2rem"}}> Za ostvarivanje svojih prava, molimo vas da nas kontaktirate putem email adrese: kilexxx0@gmail.com. </h5>
             </div>

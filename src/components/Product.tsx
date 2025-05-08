@@ -14,9 +14,6 @@ type ProductProps = {
     onOpenSlider: (id: number) => void
 }
 
-//na osnovu klika da odredi koji je proizvod kliknut (njegov id) i po tome da nadje ime, desc...
-//za sad sve slike imaju isto ime
-
 const Product = ({ id, name, price, image, available, discount, onOpenSlider} : ProductProps) => {
     const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
     let quantity = getItemQuantity(id);

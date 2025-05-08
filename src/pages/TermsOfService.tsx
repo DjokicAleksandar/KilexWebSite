@@ -12,10 +12,10 @@ function TermsOfService() {
                 <br/>
                 <b>Prodaja se vrši samo za potrošače na teritoriji Republike Srbije.</b>
                 <br/>
-                Korišćenjem našeg sajta, pristajete na uslove korišćenja navedene na ovoj stranici. Ako se ne slažete s bilo kojim delom ovih uslova, molimo vas da ne koristite naš sajt.
+                Korišćenjem našeg sajta, pristajete na uslove korišćenja navedene na ovoj stranici. Ako se ne slažete s bilo kojim delom ovih uslova, molimo Vas da ne koristite naš sajt.
                 Molimo Vas da Uslove pažljivo pročitate i upoznate se pravilima koja primenjujemo, 
                 jer registracijom potvrđujete da ste pročitali, razumeli i prihvatili Uslove.  
-                Kilex zadržava pravo da u bilo kom trenutku izmeni Uslove i predlažemo da prilikom svakog korišćenja proverite da li su se Uslovi možda promenili od vaše poslednje posete.
+                Kilex zadržava pravo da u bilo kom trenutku izmeni Uslove i predlažemo da prilikom svakog korišćenja proverite da li su se Uslovi možda promenili od Vaše poslednje posete.
                 <br/>
                 Kilex, svoje cenjene potrošače koji kupuju proizvode putem internet stranice www.kilex.shop 
                 obaveštava da Uslovi definišu postupak naručivanja, plaćanja, isporuke i povrata odnosno reklamacije proizvoda ponuđene na internet stranici www.kilex.shop. </h5>
@@ -33,7 +33,7 @@ function TermsOfService() {
                 <h2 style={{padding: "10px 0px", borderBottom: "1px solid #dab684"}}> Naručivanje </h2>
                 <h5 style={{fontWeight: "300", margin: "10px 0px", width: "90%", fontSize: "1.2rem"}}> Naručivanje na našem sajtu je jednostavno i brzo! </h5>
                 <ul>
-                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> <b>Izaberite proizvode:</b> Pregledajte našu ponudu i odaberite proizvode koji vam se dopadaju.
+                    <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}> <b>Izaberite proizvode:</b> Pregledajte našu ponudu i odaberite proizvode koji Vam se dopadaju.
                         Kliknite na dugme "Dodaj u korpu" za svaki proizvod koji želite da naručite. 
                     </li>
                     <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}>
@@ -46,7 +46,7 @@ function TermsOfService() {
                     </li>
                     <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}>
                         <b>Potvrdite narudžbinu:</b> Proverite sve podatke i potvrdite narudžbinu klikom na dugme "Naručite". 
-                        Nakon toga, dobićete potvrdu putem e-maila o vašoj narudžbini. 
+                        Nakon toga, dobićete potvrdu putem e-maila o Vašoj narudžbini. 
                     </li>
                     <li style={{padding: "5px 0px", fontSize: "1.2rem", fontWeight: "300"}}>
                         <b>Dostava i plaćanje:</b> Vaša narudžbina će biti dostavljena na adresu koju ste uneli. 
@@ -113,7 +113,7 @@ function TermsOfService() {
                     <br/>
                     <b>Napomena:</b>
                     Reklamacije se neće uvažiti ukoliko je oštećenje nastalo nepravilnim korišćenjem proizvoda ili krivicom kupca. 
-                    Prema tome, molimo vas da pažljivo rukujete proizvodima.
+                    Prema tome, molimo Vas da pažljivo rukujete proizvodima.
                     <br/>
                     Trudimo se da svaki kupac bude zadovoljan, i rešavaćemo reklamacije u najkraćem mogućem roku! 
                 </h5>
@@ -122,7 +122,7 @@ function TermsOfService() {
             <div style={{fontWeight: "300", margin: "10px 0px", width: "90%", fontSize: "1.2rem"}}>
                 <h2 style={{padding: "10px 0px", borderBottom: "1px solid #dab684"}}> Politika privatnosti </h2>
                 <h5 style={{fontWeight: "300", margin: "10px 0px"}}> Korišćenjem našeg sajta pristajete na našu Politiku privatnosti, koja objašnjava kako prikupljamo, 
-                    koristimo i štitimo vaše podatke. 
+                    koristimo i štitimo Vaše podatke. 
                 </h5>
                 <h5 style={{fontWeight: "300", margin: "10px 0px"}}>
                     Više informacija možete pronaći na stranici <a href="privacyPolicy.html" style={{textDecoration: "none", color: "#dab684"}}>Politika privatnosti.</a>

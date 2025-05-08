@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "W1",
-        "price": 529,
+        "price": 529.00,
         "image": "images/eyelashes/W1.png",
         "images": ["images/eyelashes/W1.png", "images/eyelashes/W1-2.png", "images/eyelashes/W1-3.png"],
         "description": "Opis trepavice ...",
