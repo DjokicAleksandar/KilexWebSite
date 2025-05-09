@@ -23,8 +23,12 @@ const AdminLogin = () => {
 
             const data = await res.json();
 
+            if (res.status == 401) {
+                alert("Pogresan email ili lozinka");
+            }
+
             if (!res.ok) {
-                throw new Error(data.message || "Greska pri prijavi");
+                throw new Error("Greska");
             }
 
             localStorage.setItem("token", data.token);

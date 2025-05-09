@@ -25,8 +25,7 @@ function isValidEmail(email) {
 
 router.post("/send-email", async (req, res) => {
     const { formData, cartItems, today, pdf } = req.body; //i argsForPdf
-    console.log(pdf);
-  
+      
     if (!formData.email || !formData.name || !formData.adress || !cartItems || cartItems.length === 0) {
       return res.status(400).json({ message: "Nedostaju podaci!" });
     }
@@ -36,11 +35,19 @@ router.post("/send-email", async (req, res) => {
     }
   
     const date = `${today.day}. ${today.month}. ${today.year}`;
-    let totalPrice = 300;
+    let totalPrice = 0;
+    let freeShipping = false;
 
     cartItems.forEach(item => {
         totalPrice += item.price;
     });
+
+    if (totalPrice < 5000) {
+      freeShipping = false;
+      totalPrice += 450;
+    } else {
+      freeShipping = true;
+    }
   
     // Kreiranje HTML sadrzaja za email
     const productList = cartItems
@@ -53,13 +60,13 @@ router.post("/send-email", async (req, res) => {
   
     const mailOptions = {
       from: `"Kilex - store" <${process.env.EMAIL_USER}>`,
-      to: formData.email,
+      bcc: [formData.email, "kilexxx0@gmail.com"],
       subject: "Potvrda porudžbine",
       html: `
         <h2 style="color: black;">Pozdrav, ${formData.name}!</h2>
         <h3 style="color: black;">Hvala što ste poručili iz naše prodavnice. Detalji porudžbine su:</h3>
         <table style="font-size: 20px; color: black;">${productList}</table>
-        <h3 style="color: black;">Dostava: <strong> 300,00 </strong> RSD</h3>
+        <h3 style="color: black;">Dostava: <strong> ${freeShipping ? "0" : "450,00"} </strong> RSD</h3>
         <h3 style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice},00 </strong> RSD</h3>
         <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${today.time} </strong> </p>
         <p style="color: black;">Adresa dostave: <strong>${formData.adress}, ${formData.post} - ${formData.city}</strong></p>

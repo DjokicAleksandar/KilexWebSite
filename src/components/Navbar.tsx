@@ -1,7 +1,6 @@
-import menu from '../../public/images/menu1.png';
-import logoTransparent from '../../public/images/logoTransparent.png';
-import cart from '../../public/images/cart1.png';
-import back from "../../public/images/backarrow.png";
+import menu from '/images/menu1.svg';
+import logoTransparent from '/images/logoTransparent.webp';
+import cart from '/images/cart1.svg';
 import DropdownMenu from './DropdownMenu';
 import { Button, Container, Navbar as NavbarBs } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -57,10 +56,10 @@ const Navbar = ( {setNavbarHeight, navbarHeight}: NavbarProps ) => {
             <NavbarBs ref={navRef} expand={false} className="d-flex flex-row position-fixed w-100 z-3 p-2" style={{backgroundColor: "#0f0904"}}>
                 <Container className="w100" style={{paddingLeft: "0px", paddingRight: "0px"}}>
                     <div onClick={toggleMenu} style={{cursor: "pointer", transition: "0.3s", transform: isMenuOpen ? "rotateZ(90deg)" : "rotateZ(0deg)"}}> 
-                        <img src={menu} width="30px" height="30px"/> 
+                        <img src={menu} width={ isMobile ? "30px" : "40px"} height={ isMobile ? "30px" : "40px"}/>
                     </div>
 
-                    <div> <img src={logoTransparent} width={ isMobile ? "40px" : "70px"} height={ isMobile ? "40px" : "55px"}/> </div>
+                    <div> <img src={logoTransparent} width={ isMobile ? "45px" : "70px"} height={ isMobile ? "45px" : "55px"}/> </div>
 
                     {isHomePage ?
                         <Button 
@@ -68,18 +67,18 @@ const Navbar = ( {setNavbarHeight, navbarHeight}: NavbarProps ) => {
                             variant="outline-none" 
                             style={{padding: "0px"}} 
                             className="d-flex justify-content-center align-items-center position-relative"> 
-                            <img src={cart} width="30px" height="30px"/> 
-                            <div className="position-absolute d-flex justify-content-center align-items-center bg-danger rounded-circle fs-6" 
-                                style={{width: isMobile ? "0.9rem" : "1.1rem", height: isMobile ? "0.9rem" : "1.1rem", top: "0", right: "-4px", color: "white"}}> {cartQuantity}
+                            <img src={cart} width={ isMobile ? "30px" : "40px"} height={ isMobile ? "30px" : "40px"}/> 
+                            <div className="position-absolute d-flex justify-content-center align-items-center bg-danger rounded-circle" 
+                                style={{width: isMobile ? "0.9rem" : "1.1rem", 
+                                height: isMobile ? "0.9rem" : "1.1rem", 
+                                top: "0", 
+                                right: "-4px", 
+                                color: "white", 
+                                padding: "4px",
+                                fontSize: isMobile ? "0.9rem" : "1rem"}}> {cartQuantity}
                             </div> 
                         </Button> :
-                        <Button
-                            onClick={handleBack}
-                            variant="outline-none" 
-                            style={{padding: "0px"}} 
-                            className="d-flex justify-content-center align-items-center position-relative"> 
-                            <img src={back} width="35px" height="35px"/>
-                        </Button>
+                        <div style={{width: "35px", height: "35px", background: "transparent"}}></div>
                     }
 
                 </Container>

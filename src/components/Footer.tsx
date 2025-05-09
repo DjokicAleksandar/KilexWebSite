@@ -1,8 +1,8 @@
-import logoTransparent from "../../public/images/logoTransparent.png";
-import whatsapp from "../../public/images/whatsapp.png";
-import instagram from "../../public/images/instagram.png";
-import email from "../../public/images/email.png";
-import tiktok from "../../public/images/tiktok.png";
+import logoTransparent from "/images/logoTransparent.webp";
+import whatsapp from "/images/whatsapp.svg";
+import instagram from "/images/instagram.svg";
+import email from "/images/email.svg";
+import tiktok from "/images/tiktok.svg";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "../hooks/useIsMobile";
 

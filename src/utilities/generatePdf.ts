@@ -1,5 +1,6 @@
 import jsPDFInvoiceTemplate, { OutputType } from "jspdf-invoice-template";
 import JsPDFInvoiceTemplateProps from "jspdf-invoice-template";
+import Product from "../components/Product";
 
 interface Product {
     id: number;
@@ -33,6 +34,11 @@ export async function GeneratePDF (data : {
     // }
 
     // logoImg = await loadLogo();
+
+    let totalPrice = 0;
+    data.productsForPdf.map((product: Product) => {
+        totalPrice += product.price * product.quantity; 
+    })
 
     var props = {
         outputType: OutputType.DataUriString,
@@ -106,7 +112,7 @@ export async function GeneratePDF (data : {
             ])),
             additionalRows: [{
                 col1: 'Dostava: ',
-                col2: String('300.00'),
+                col2: totalPrice < 5000 ? String('450.00') : String('0'),
                 col3: 'DIN',
                 style: {
                     fontSize: 10 //optional, default 12

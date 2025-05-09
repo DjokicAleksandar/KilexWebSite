@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import productData from "../data/products.json";
 import { useIsMobile } from "../hooks/useIsMobile";
-import leftArrow from "../../public/images/leftArrow.png";
-import rightArrow from "../../public/images/rightArrow.png";
 
 type ImageSliderProps = {
     setShowSlider: () => void;
@@ -10,7 +8,8 @@ type ImageSliderProps = {
 }
 
 const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const navDotsRef = useRef<HTMLAnchorElement[]>([]);
     const [isVisible, setIsVisible] = useState(false);
     const isMobile = useIsMobile();
 
@@ -22,46 +21,39 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        const slider = sliderRef.current;
+        const navDots = navDotsRef.current;
+
+        if (!slider || navDots.length == 0) return;
+
+        const updateActiveDot = () => {
+            const sliderWidth = slider.scrollWidth / slider.childElementCount;
+            const scrollLeft = slider.scrollLeft;
+            const activeIndex = Math.round(scrollLeft / sliderWidth);
+      
+            navDots.forEach(dot => dot.classList.remove("active"));
+            navDots[activeIndex]?.classList.add("active");
+        };
+
+        slider.addEventListener("scroll", updateActiveDot);
+
+        updateActiveDot();
+
+        return () => {
+            removeEventListener("scroll", updateActiveDot)
+        }
+    }, []);
+
     const handleClose = () => {
         setIsVisible(false);
         setTimeout(() => {
             setShowSlider();
         }, 500)
     }
-
-    const handleLeftClick = () => {
-        const isFirstSlide = currentIndex === 0;
-        const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-        setCurrentIndex(newIndex);
-    }
-
-    const handleRightClick = () => {
-        const isLastSlide = currentIndex === images.length - 1;
-        const newIndex = isLastSlide ? 0 : currentIndex + 1;
-        setCurrentIndex(newIndex);
-    }
     
-    const handleDotClick = (index: number) => {
-        setCurrentIndex(index);
-    }
-    
-    const desc = productData.find((product) => product.id === id)?.description;
     const name = productData.find((product) => product.id === id)?.name;
     const images = productData.find((product) => product.id === id)?.images || [];
-
-    const slideStyles = {
-        backgroundImage: `url(${images[currentIndex]})`,
-        backgroundPosition: "center",
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        objectFit: "cover",
-        margin: "0 auto",
-        width: "90%",
-        flex: "1 0 100%",
-        aspectRatio: "16/9",
-        scrollSnapType: "x mandatory",
-        scrollBehavior: "smooth"
-    }
     
     return (
         <div 
@@ -73,8 +65,8 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
             <div 
                 onClick={(e) => e.stopPropagation()}
                 className={`position-fixed top-50 start-50 translate-middle
-                    d-flex justify-content-center align-items-center flex-column gap-2 px-3`}
-                style={{width: isMobile ? "95%" : "max-content", backgroundColor: "white"}}>
+                    d-flex justify-content-center align-items-center flex-column px-3 pb-4`}
+                style={{width: isMobile ? "95%" : "50%", backgroundColor: "white"}}>
 
                 {/* close button */}
                 <p className="position-absolute" 
@@ -84,21 +76,22 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
                 </p>
 
                 <div 
-                    style={{fontSize: "2rem", 
+                    style={{fontSize: "1.8rem", 
                     width: "90%", 
                     textAlign: "center", 
                     padding: "10px 20px 10px 20px",
                     borderBottom: "1px solid #0f0904"}}>{name}</div>
 
                 <div 
-                    className="position-relative"
-                    style={slideStyles}>
+                    className="position-relative">
 
-                    <div 
-                        onClick={handleLeftClick}
-                        className="position-absolute"
-                        style={{top: "50%", transform: "translate(0, -50%)", left: "-32px", fontSize: "45px", zIndex: "1", cursor: "pointer"}}>
-                        <img width="35px" height="35px" src={leftArrow}/>
+                    <div className="w-100 d-flex eyelashSlider" 
+                        ref={sliderRef}
+                        style={{overflowX: "auto", scrollSnapType: "x mandatory", scrollBehavior: "smooth"}}>
+                        {images.map((image, i) => (
+                            <img key={i} src={images[i]} 
+                            style={{width: "90%", flex: "1 0 100%", aspectRatio: "16 / 9", padding: "10px", scrollSnapAlign: "start", objectFit: "contain"}}/>
+                        ))}
                     </div>
 
                     <div className="d-flex justify-content-center gap-3 mt-2 w-100 p-1" 
@@ -110,30 +103,19 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
                             scrollSnapType: "x mandatory",
                             overflowX: "auto"}}>
                         {images.map((slide, index) => (
-                            <div 
-                                onClick={() => handleDotClick(index)}
+                            <a 
                                 key={index} 
                                 style={{width: "10px", 
                                     height: "10px", 
-                                    borderRadius: "50%", 
-                                    backgroundColor: index === currentIndex ? "#B39167" : "#dab684", 
-                                    transform: `scale(${index === currentIndex ? "1.2" : "1"})`,
-                                    cursor: "pointer"}}></div>
+                                    borderRadius: "50%",
+                                    textDecoration: "none"}}
+                                ref={(el) => {
+                                    if (el) navDotsRef.current[index] = el;
+                                }}
+                                className={`dot ${index === 0 ? "active" : ""}`}></a>
                         ))}
                     </div>
 
-                    <div 
-                        onClick={handleRightClick}
-                        className="position-absolute"
-                        style={{top: "50%", transform: "translate(0, -50%)", right: "-32px", fontSize: "45px", zIndex: "1", cursor: "pointer"}}> 
-                        <img width="35px" height="35px" src={rightArrow}/>
-                    </div>
-
-                </div>
-                
-
-                <div className="mt-4 pb-3">
-                    {desc}
                 </div>
 
             </div>

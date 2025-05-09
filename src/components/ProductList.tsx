@@ -2,8 +2,8 @@ import Product from "./Product";
 import productData from "../data/products.json";
 import {Col, Row} from "react-bootstrap";
 import { useState, useEffect } from "react";
-import ImageSlider from "./ImageSlider";
 import WelcomeHeader from "./WelcomeHeader";
+import { lazy, Suspense } from "react";
 
 interface ProductListProps {
     top: number;
@@ -12,6 +12,7 @@ interface ProductListProps {
 function ProductList({top}: ProductListProps) {    
     const [showSlider, setShowSlider] = useState(false);
     const [sliderData, setSliderData] = useState<{id: number} | null>(null);
+    const ImageSlider = lazy(() => import("./ImageSlider"));
 
     const handleOpenSlider = (id: number) => {
         setShowSlider(true);
@@ -51,9 +52,11 @@ function ProductList({top}: ProductListProps) {
                     
             </div>
             {showSlider && sliderData && (
-                <ImageSlider 
-                    setShowSlider={() => setShowSlider(false)}
-                    id={sliderData.id}/>
+                <Suspense fallback={null}>
+                    <ImageSlider 
+                        setShowSlider={() => setShowSlider(false)}
+                        id={sliderData.id}/>
+                </Suspense>
             )}
         </>
     )

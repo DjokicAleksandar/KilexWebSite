@@ -1,6 +1,9 @@
-import imageMobile1 from "../../public/images/logoBackground.jpg";
-import imageMobile2 from "../../public/images/naslovnaSlika2.webp"; 
+import imageMobile1 from "/images/welcomeImageMobile1.webp";
+import imageMobile2 from "/images/welcomeImageMobile2.webp"; 
+import imageDesktop1 from "/images/welcomeImageCmp1.webp";
+import imageDesktop2 from "/images/welcomeImageCmp2.webp"
 import { useRef, useEffect } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface WelcomeImageProps {
     imageHeight: number;
@@ -8,9 +11,16 @@ interface WelcomeImageProps {
 }
 
 const WelcomeImage = ({imageHeight, setImageHeight}: WelcomeImageProps) => {
-    const images = [
+    const isMobile = useIsMobile();
+
+    const imagesMobile = [
         imageMobile1,
         imageMobile2
+    ]
+
+    const imagesDesktop = [
+        imageDesktop1,
+        imageDesktop2
     ]
 
     const imageRef = useRef<HTMLDivElement | null>(null);
@@ -33,16 +43,26 @@ const WelcomeImage = ({imageHeight, setImageHeight}: WelcomeImageProps) => {
     })
 
     return (
-        <div ref={imageRef} className="position-absolute top-0 z-1" style={{overflow: "hidden", height: "70vh", width: "100vw"}}>
+        <div ref={imageRef} className="position-absolute top-0 z-1" style={{overflow: "hidden", height: isMobile? "70vh" : "", width: "100vw", aspectRatio: isMobile ? "2 / 3" : "16 / 9"}}>
             <div className="w-100 d-flex slider">
-                {images.map((src, i) => (
-                    <img
-                        key={i}
-                        src={src}
-                        className={`slider-image`}  
-                        alt={`Slide ${i}`}  
-                    />
-                ))}
+                {isMobile ? 
+                    imagesMobile.map((src, i) => (
+                        <img
+                            key={i}
+                            src={src}
+                            className={`slider-image`}  
+                            alt={`Slide ${i}`}  
+                        />
+                    )) :
+                    imagesDesktop.map((src, i) => (
+                        <img
+                            key={i}
+                            src={src}
+                            className={`slider-image`}  
+                            alt={`Slide ${i}`}  
+                        />
+                    ))
+                } 
             </div>
         </div>
     )

@@ -51,7 +51,7 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
 
                 <Card.Img variant="top" 
                     src={image} 
-                    style={{objectFit: "cover", cursor: "pointer"}}
+                    style={{objectFit: "cover", cursor: "pointer", width: "100%"}}
                     onClick={() => onOpenSlider(id)}/> 
 
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center mb-2" style={{padding: "0px"}}>

@@ -18,7 +18,8 @@ export function CartItem({id, quantity, variant = "home"}: CartItemProps ) {
     if (item == null) return <h1> Nema </h1>;
 
     return (
-        <Stack direction="horizontal" className={`align-items-center justify-content-between w-100 pr-1`}>
+        <Stack direction="horizontal" 
+            className={`align-items-center ${variant == "home" ? "justify-content-around" : "justify-content-between"} w-100 pr-1 `}>
             {/* Slika */}
             <div className={`d-flex ${variant == "cart" ? "ms-3" : ""}`} style={{width: variant == "cart" ? "50%" : ""}}>
 

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile"
 
 interface FormProps {
@@ -29,11 +28,20 @@ interface FormProps {
         post: boolean;
         phone: boolean;
     };
+    setFormError: React.Dispatch<React.SetStateAction<{
+        name: boolean;
+        lastName: boolean;
+        email: boolean;
+        city: boolean;
+        adress: boolean;
+        post: boolean;
+        phone: boolean;
+    }>>;
     emailFormatError: boolean;
     phoneFormatError: boolean;
   }
 
-export function Form({formData, setFormData, formError, emailFormatError, phoneFormatError}: FormProps) {
+export function Form({formData, setFormData, formError, setFormError, emailFormatError, phoneFormatError}: FormProps) {
     const isMobile = useIsMobile();
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +49,10 @@ export function Form({formData, setFormData, formError, emailFormatError, phoneF
           ...prev,
           [e.target.name]: e.target.value
         }));
+        setFormError(prev => ({
+            ...prev,
+            [e.target.name]: false
+        }))
     };
 
     return (
@@ -136,7 +148,7 @@ export function Form({formData, setFormData, formError, emailFormatError, phoneF
                 <input 
                     type="tel" 
                     pattern="^06[0-9]{7,9}$" 
-                    placeholder="06x xxx xxxx" 
+                    placeholder="0612345678" 
                     name="phone"
                     id="phone"
                     className="w-100 p-1 pl-2"

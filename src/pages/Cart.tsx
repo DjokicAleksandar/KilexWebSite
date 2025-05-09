@@ -5,11 +5,11 @@ import { Container } from "react-bootstrap";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { validateForm } from "../utilities/validateForm";
 import Popup from "../components/Popup";
-import truck from "../../public/images/truck.png";
-import clock from "../../public/images/clock.png";
-import wallet from "../../public/images/wallet.png";
+import truck from "/images/truck.svg";
+import clock from "/images/clock.svg";
+import wallet from "/images/wallet.svg";
 import { formatPrice } from "../utilities/formatPrice";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 type CartItem = {
     id: number
@@ -19,11 +19,10 @@ type CartItem = {
 }
 
 function Cart() {
-    let total = 300;
     const isMobile = useIsMobile();
-    const navigate = useNavigate();
     const API_URL = import.meta.env.VITE_API_BASE_URL;
 
+    const [freeShipping, setFreeShipping] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [emailFormatError, setEmailFormatError] = useState(false);
     const [phoneFormatError, setPhoneFormatError] = useState(false);
@@ -75,9 +74,12 @@ function Cart() {
         }
     }, [popupStatus]);
 
-    cartItems.forEach((cartItem) => {
-        total += (cartItem.price * cartItem.quantity);
-    })
+    const totalWithoutShipping = cartItems.reduce(
+        (sum, cartItem) => sum + cartItem.price * cartItem.quantity,
+        0
+    );
+
+    const finalTotal = totalWithoutShipping < 5000 ? totalWithoutShipping + 450 : totalWithoutShipping;
 
     function ClearInputs() {
         setFormData({
@@ -90,6 +92,10 @@ function Cart() {
             phone: ""
         })
     }
+
+    useEffect(() => {
+        setFreeShipping(totalWithoutShipping >= 5000);
+      }, [totalWithoutShipping]);
 
     const handleOnClick = async () => {
         const {isValid, errors, emailFormatError, phoneFormatError} = validateForm(formData);
@@ -137,7 +143,7 @@ function Cart() {
             email: formData.email,
             date: `${fullData.today.day}. ${fullData.today.month}. ${fullData.today.year}`,
             time: today.time,
-            totalPrice: String(total),
+            totalPrice: String(finalTotal),
             productsForPdf: cartItems
         })
         
@@ -145,7 +151,7 @@ function Cart() {
             setPopupStatus("loading");
             //${API_URL}/send-email
             //http://localhost:5000
-            const response = await fetch(`http://localhost:5000/send-email`, {
+            const response = await fetch(`${API_URL}/send-email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -170,19 +176,19 @@ function Cart() {
                 }
             }
 
-            // fetch(`${API_URL}/add-sale`, {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({products: fullData.cartItems})
-            // })
-            // .then(res => res.json())
-            // .then(data => console.log("Sacuvana prodaja: " + data))
-            // .catch(err => {
-            //     console.log("Greska prilikom cuvanja u bazu: " + err);
-            //     setPopupStatus("error");
-            // });
+            fetch(`${API_URL}/add-sale`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({products: fullData.cartItems})
+            })
+            .then(res => res.json())
+            .then(data => console.log("Sacuvana prodaja: " + data))
+            .catch(err => {
+                console.log("Greska prilikom cuvanja u bazu: " + err);
+                setPopupStatus("error");
+            });
 
             ClearInputs();
             setPopupStatus("success");
@@ -207,7 +213,7 @@ function Cart() {
                     padding: isMobile ? "10px" : "20px",
                     position: "relative"}}>
 
-            <Form formData={formData} setFormData={setFormData} formError={formError} 
+            <Form formData={formData} setFormData={setFormData} formError={formError} setFormError={setFormError} 
                 emailFormatError={emailFormatError} phoneFormatError={phoneFormatError}/>
 
             <div style={{padding: isMobile ? "10px" : "30px"}}>
@@ -234,14 +240,14 @@ function Cart() {
                     className="d-flex justify-content-around pt-2 pb-2"
                     style={{border: "1px solid #dab684"}}>
                     <h5 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Dostava: </h5>
-                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> 300,00 RSD </h5>
+                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> {freeShipping ? "0 RSD" : "450,00 RSD"} </h5>
                 </div>
 
                 <div 
                     className="d-flex justify-content-around pt-2 pb-2"
                     style={{border: "1px solid #dab684"}}>
                     <h4 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Ukupno: </h4>
-                    <h4 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> {formatPrice(total)} </h4>
+                    <h4 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> {formatPrice(finalTotal)} </h4>
                 </div>
                 
                 <div className="d-flex flex-column gap-3 rounded-3 mt-5 mb-3" style={{fontSize: "1rem", textAlign: "center"}}> 
@@ -252,7 +258,8 @@ function Cart() {
                                 <img width="40px" height="40px" src={truck}/> <h4 style={{fontSize: "1.1rem", fontWeight: "500", margin: "0"}}> Isporuka proizvoda </h4> 
                             </div>
                             <h5 style={{fontWeight: "400", fontSize: "1.1rem"}}> Isporuka se vrši kurirskom službom <br/>
-                                Cena dostave iznosi <b>300 RSD</b> i dodaje se na ukupnu cenu narudžbine. </h5>
+                                Cena dostave iznosi <b>450 RSD</b> i dodaje se na ukupnu cenu narudžbine. <br/>
+                                Za porudžbine preko 5,000 RSD dostava je <b> BESPLATNA </b> </h5>
                         </div>
 
                         <div className="segmentInfo"> 
