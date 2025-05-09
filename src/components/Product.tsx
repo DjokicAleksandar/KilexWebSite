@@ -3,6 +3,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useEffect } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { formatPrice } from "../utilities/formatPrice";
+import useItemVisibility from "../hooks/useItemVisibility";
 
 type ProductProps = {
     id: number
@@ -19,31 +20,32 @@ const Product = ({ id, name, price, image, available, discount, onOpenSlider} : 
     let quantity = getItemQuantity(id);
     const { openCart } = useShoppingCart();
     const isMobile = useIsMobile();
+    const itemVisibility = useItemVisibility();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const items = document.querySelectorAll(".item");
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const items = document.querySelectorAll(".item");
     
-            items.forEach(item => {
-                const box = item.getBoundingClientRect();
-                if (box.top <= window.innerHeight) {
-                    item.classList.add("visibleItem");
-                } else {
-                    item.classList.remove("visibleItem");
-                }
-            });
-        };
+    //         items.forEach(item => {
+    //             const box = item.getBoundingClientRect();
+    //             if (box.top <= window.innerHeight) {
+    //                 item.classList.add("visibleItem");
+    //             } else {
+    //                 item.classList.remove("visibleItem");
+    //             }
+    //         });
+    //     };
     
-        const timeout = setTimeout(() => {
-          handleScroll(); // pokreni jednom odmah
-          window.addEventListener("scroll", handleScroll);
-        }, 500);
+    //     const timeout = setTimeout(() => {
+    //       handleScroll(); // pokreni jednom odmah
+    //       window.addEventListener("scroll", handleScroll);
+    //     }, 500);
     
-        return () => {
-          clearTimeout(timeout);
-          window.removeEventListener("scroll", handleScroll);
-        };
-      }, []);
+    //     return () => {
+    //       clearTimeout(timeout);
+    //       window.removeEventListener("scroll", handleScroll);
+    //     };
+    // }, []);
 
     return (
         <>

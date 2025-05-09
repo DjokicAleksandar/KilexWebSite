@@ -50,7 +50,6 @@ function Cart() {
         const data = localStorage.getItem("shopping-cart");
 
         if (data) {
-            console.log(data)
             setCartItems(JSON.parse(data));
         }
     }, []);

@@ -33,6 +33,7 @@ body::-webkit-scrollbar {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: transform, opacity;
 }
 
 .item.visibleItem {
@@ -92,6 +93,20 @@ body::-webkit-scrollbar {
   width: 100vw;
   height: 100vh;
   background-color: #FFF;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#loader-mini{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
   z-index: 1000;
   display: flex;
   justify-content: center;

@@ -64,11 +64,15 @@ router.post("/send-email", async (req, res) => {
       subject: "Potvrda porudžbine",
       html: `
         <h2 style="color: black;">Pozdrav, ${formData.name}!</h2>
-        <h3 style="color: black;">Hvala što ste poručili iz naše prodavnice. Detalji porudžbine su:</h3>
+        <h3 style="color: black;">Hvala što ste poručili iz naše prodavnice. </h3>
+        <h3 style="color: black;">Detalji porudžbine su: </h3>
         <table style="font-size: 20px; color: black;">${productList}</table>
-        <h3 style="color: black;">Dostava: <strong> ${freeShipping ? "0" : "450,00"} </strong> RSD</h3>
-        <h3 style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice},00 </strong> RSD</h3>
+        <p style="color: black;">Dostava: <strong> ${freeShipping ? "0" : "450,00"} RSD</strong></p>
+        <p style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice},00 RSD</strong></p>
         <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${today.time} </strong> </p>
+        <h3 style="color: black;">Podaci o kupcu: </h3>
+        <p style="color: black;">Ime i prezime: <strong>${formData.name} ${formData.lastName}</strong></p>
+        <p style="color: black;">Email adresa: <strong>${formData.email}</strong></p>
         <p style="color: black;">Adresa dostave: <strong>${formData.adress}, ${formData.post} - ${formData.city}</strong></p>
         <p style="color: black;">Broj telefona: <strong>${formData.phone}</strong></p>
         <p style="color: black;">Vaša porudžbina će uskoro biti obrađena.</p>

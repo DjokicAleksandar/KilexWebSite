@@ -4,6 +4,7 @@ import {Col, Row} from "react-bootstrap";
 import { useState, useEffect } from "react";
 import WelcomeHeader from "./WelcomeHeader";
 import { lazy, Suspense } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface ProductListProps {
     top: number;
@@ -13,6 +14,7 @@ function ProductList({top}: ProductListProps) {
     const [showSlider, setShowSlider] = useState(false);
     const [sliderData, setSliderData] = useState<{id: number} | null>(null);
     const ImageSlider = lazy(() => import("./ImageSlider"));
+    const isMobile = useIsMobile();
 
     const handleOpenSlider = (id: number) => {
         setShowSlider(true);
@@ -39,6 +41,7 @@ function ProductList({top}: ProductListProps) {
                     {productData.map(item => (
                         <Col key={item.id}> 
                             <Product 
+                                key={item.id}
                                 id={item.id} 
                                 name={item.name} 
                                 price={item.price} 
@@ -52,7 +55,10 @@ function ProductList({top}: ProductListProps) {
                     
             </div>
             {showSlider && sliderData && (
-                <Suspense fallback={null}>
+                <Suspense fallback={
+                    <div id="loader-mini">
+                        <div className="loaderAnimation"></div>
+                    </div>}>
                     <ImageSlider 
                         setShowSlider={() => setShowSlider(false)}
                         id={sliderData.id}/>

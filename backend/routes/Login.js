@@ -12,7 +12,6 @@ const LOGIN = process.env.LOGIN;
 
 router.post(LOGIN, (req, res) => {
   const {userName, password} = req.body;
-  console.log(userName + " " + password);
 
   if (userName == ADMIN_EMAIL && password == ADMIN_PASSWORD) {
     const token = jwt.sign({ admin: true }, SECRET_KEY, { expiresIn: "1h" });

@@ -89,7 +89,7 @@ const ImageSlider = ({id, setShowSlider}: ImageSliderProps) => {
                         ref={sliderRef}
                         style={{overflowX: "auto", scrollSnapType: "x mandatory", scrollBehavior: "smooth"}}>
                         {images.map((image, i) => (
-                            <img key={i} src={images[i]} 
+                            <img key={i} src={images[i]} loading="lazy" alt="Učitavanje..." 
                             style={{width: "90%", flex: "1 0 100%", aspectRatio: "16 / 9", padding: "10px", scrollSnapAlign: "start", objectFit: "contain"}}/>
                         ))}
                     </div>
