@@ -24,7 +24,7 @@ export function ShoppingCartMenu({isOpen} : ShoppingCartMenuProps) {
     return (
 
         <Offcanvas show={isOpen} onHide={closeCart} placement="end" 
-            style={{width: isMobile ? "90%" : "400px",
+            style={{width: isMobile ? "90%" : "450px",
                 maxWidth: "800px"}}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Vaša korpa</Offcanvas.Title>
