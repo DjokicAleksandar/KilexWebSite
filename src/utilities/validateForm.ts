@@ -6,12 +6,17 @@ export function validateForm(formData: Record<string, string>) {
 
     for (let key in formData) {
         if (!formData[key]) {
+            if (key == "note")
+                continue;
+
             errors[key] = true;
             isValid = false;
         } else {
             errors[key] = false;
         }
     }
+
+
 
     // Email format provera
     if (formData.email) {

@@ -34,7 +34,8 @@ function Cart() {
         city: "",
         adress: "",
         post: "",
-        phone: ""
+        phone: "",
+        note: ""
     })
     const [formError, setFormError] = useState({
         name: false,
@@ -88,7 +89,8 @@ function Cart() {
             city: "",
             adress: "",
             post: "",
-            phone: ""
+            phone: "",
+            note: ""
         })
     }
 
@@ -171,6 +173,12 @@ function Cart() {
 
                 if (response.status == 500) {
                     setPopupStatus("error");
+                    return;
+                }
+
+                if (data.message == "Uneli ste previsе teksta!") {
+                    alert(data.message);
+                    ClearInputs();
                     return;
                 }
             }

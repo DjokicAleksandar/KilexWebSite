@@ -42,6 +42,13 @@ router.post("/send-email", async (req, res) => {
         totalPrice += item.price;
     });
 
+    formData.forEach(input => {
+      if (input.length > 200) {
+        res.status(400).json({message: "Uneli ste previsе teksta!"});
+        return;
+      }
+    })
+
     if (totalPrice < 5000) {
       freeShipping = false;
       totalPrice += 450;
@@ -70,6 +77,7 @@ router.post("/send-email", async (req, res) => {
         <p style="color: black;">Dostava: <strong> ${freeShipping ? "0" : "450,00"} RSD</strong></p>
         <p style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice},00 RSD</strong></p>
         <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${today.time} </strong> </p>
+        ${formData.note.trim() ? `<p style="color: black;">Napomena dostavljaču: <strong>${formData.note}</strong></p>` : ""}
         <h3 style="color: black;">Podaci o kupcu: </h3>
         <p style="color: black;">Ime i prezime: <strong>${formData.name} ${formData.lastName}</strong></p>
         <p style="color: black;">Email adresa: <strong>${formData.email}</strong></p>

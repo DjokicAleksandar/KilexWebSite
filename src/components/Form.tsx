@@ -9,6 +9,7 @@ interface FormProps {
       adress: string;
       post: string;
       phone: string;
+      note: string;
     };
     setFormData: React.Dispatch<React.SetStateAction<{
         name: string;
@@ -18,6 +19,7 @@ interface FormProps {
         adress: string;
         post: string;
         phone: string;
+        note: string;
     }>>;
     formError: {
         name: boolean;
@@ -62,7 +64,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
             <div className="d-flex justify-content-between gap-2" style={{flexDirection: isMobile ? "column" : "row"}}>
                 <div className="pt-2 pb-2" style={{width: isMobile ? "100%" : "50%"}}>
                     <h3 className="d-flex gap-1 align-items-end" style={{fontWeight: "350"}}>Ime: <span className="d-flex align-items-end" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                    <input 
+                    <input
+                        maxLength={30} 
                         type="text" 
                         placeholder="Ime" 
                         name="name"
@@ -76,7 +79,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
 
                 <div className="pt-2 pb-2" style={{width: isMobile ? "100%" : "50%"}}>
                     <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Prezime: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                    <input 
+                    <input
+                        maxLength={30} 
                         type="text" 
                         placeholder="Prezime" 
                         name="lastName"
@@ -91,7 +95,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
 
             <div className="w-100 pt-2 pb-2">
                 <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Email: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                <input 
+                <input
+                    maxLength={50} 
                     type="email" 
                     placeholder="E-adresa" 
                     name="email"
@@ -106,7 +111,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
             
             <div className="w-100 pt-2 pb-2">
                 <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Grad: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                <input 
+                <input
+                    maxLength={50} 
                     type="text" 
                     id="city"
                     name="city"
@@ -119,7 +125,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
 
             <div className="w-100 pt-2 pb-2">
                 <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Ulica i kućni broj: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                <input 
+                <input
+                    maxLength={60} 
                     type="text" 
                     id="adress"
                     name="adress"
@@ -132,7 +139,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
             
             <div className="w-100 pt-2 pb-2">
                 <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Poštanski broj: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                <input 
+                <input
+                    maxLength={20} 
                     type="text" 
                     id="posta"
                     name="post"
@@ -145,7 +153,8 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
 
             <div className="w-100 pt-2 pb-2">
                 <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Telefon: <span className="d-inline" style={{color: "rgb(247, 43, 43)"}}>*</span> </h3>
-                <input 
+                <input
+                    maxLength={20} 
                     type="tel" 
                     pattern="^06[0-9]{7,9}$" 
                     placeholder="0612345678" 
@@ -157,6 +166,20 @@ export function Form({formData, setFormData, formError, setFormError, emailForma
                     value={formData.phone}/>
                 {formError.phone && <div style={{color: "rgb(247, 43, 43)"}}> Morate popuniti ovo polje! </div>}
                 {phoneFormatError ? <div id="phoneFormatError" style={{color: "rgb(247, 43, 43)"}}> Pogrešan format telefonskog broja! </div> : null}
+            </div>
+
+            <div className="w-100 pt-2 pb-2">
+                <h3 className="d-flex gap-1" style={{fontWeight: "350"}}>Napomena:</h3>
+                <input
+                    maxLength={80} 
+                    type="text" 
+                    placeholder="Napomena za dostavljača..." 
+                    name="note"
+                    id="note"
+                    className="w-100 p-1 pl-2"
+                    style={{fontSize: "1rem", height: "50px", border: "1px solid #dab684", fontWeight: "300"}}
+                    onChange={handleChange}
+                    value={formData.note}/>
             </div>
 
             <h4 className="pt-2 pb-2 mt-2" style={{fontWeight: "400"}}> 
