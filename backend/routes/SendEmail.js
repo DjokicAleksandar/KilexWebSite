@@ -42,12 +42,14 @@ router.post("/send-email", async (req, res) => {
         totalPrice += item.price;
     });
 
-    formData.forEach(input => {
-      if (input.length > 200) {
-        res.status(400).json({message: "Uneli ste previsе teksta!"});
-        return;
+    for (const [key, value] of Object.entries(formData)) {
+      if (typeof value === "string" && value.length > 200) {
+        return res.status(400).json({
+          message: `Polje "${key}" ima previše karaktera.`,
+          messageId: 1,
+        });
       }
-    })
+    }
 
     if (totalPrice < 5000) {
       freeShipping = false;

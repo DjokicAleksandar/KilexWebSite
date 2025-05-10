@@ -152,7 +152,7 @@ function Cart() {
             setPopupStatus("loading");
             //${API_URL}/send-email
             //http://localhost:5000
-            const response = await fetch(`${API_URL}/send-email`, {
+            const response = await fetch(`http://localhost:5000/send-email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -176,7 +176,7 @@ function Cart() {
                     return;
                 }
 
-                if (data.message == "Uneli ste previsе teksta!") {
+                if (data.messageId == 1) {
                     alert(data.message);
                     ClearInputs();
                     return;
