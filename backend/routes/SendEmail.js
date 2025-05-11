@@ -39,7 +39,7 @@ router.post("/send-email", async (req, res) => {
     let freeShipping = false;
 
     cartItems.forEach(item => {
-        totalPrice += item.price;
+        totalPrice += item.price * item.quantity;
     });
 
     for (const [key, value] of Object.entries(formData)) {
@@ -63,7 +63,7 @@ router.post("/send-email", async (req, res) => {
       .map((p) => `<tr> 
         <td style="text-align: left;"> <b> ${p.name} </b> </td> 
         <td style="text-align: center;"> <b> x ${p.quantity} - </b> </td>
-        <td style="text-align: right;"> <b> ${p.price},00 RSD </b> <td> 
+        <td style="text-align: right;"> <b> ${p.price * p.quantity},00 RSD </b> <td> 
       </tr>`)
       .join("");
   
