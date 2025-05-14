@@ -53,7 +53,7 @@ router.post("/send-email", async (req, res) => {
 
     if (totalPrice < 5000) {
       freeShipping = false;
-      totalPrice += 450;
+      totalPrice += 249;
     } else {
       freeShipping = true;
     }
@@ -76,7 +76,7 @@ router.post("/send-email", async (req, res) => {
         <h3 style="color: black;">Hvala što ste poručili iz naše prodavnice. </h3>
         <h3 style="color: black;">Detalji porudžbine su: </h3>
         <table style="font-size: 20px; color: black;">${productList}</table>
-        <p style="color: black;">Dostava: <strong> ${freeShipping ? "0" : "450,00"} RSD</strong></p>
+        <p style="color: black;">Dostava: <strong> ${freeShipping ? "0" : "249,00"} RSD</strong></p>
         <p style="color: black;">Ukupna cena porudžbine: <strong> ${totalPrice},00 RSD</strong></p>
         <p style="color: black;">Vreme porudžbine: <strong> ${date}, ${today.time} </strong> </p>
         ${formData.note.trim() ? `<p style="color: black;">Napomena dostavljaču: <strong>${formData.note}</strong></p>` : ""}

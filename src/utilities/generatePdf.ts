@@ -112,7 +112,7 @@ export async function GeneratePDF (data : {
             ])),
             additionalRows: [{
                 col1: 'Dostava: ',
-                col2: totalPrice < 5000 ? String('450.00') : String('0'),
+                col2: totalPrice < 5000 ? String('249.00') : String('0'),
                 col3: 'DIN',
                 style: {
                     fontSize: 10 //optional, default 12

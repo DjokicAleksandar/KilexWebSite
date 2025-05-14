@@ -79,7 +79,7 @@ function Cart() {
         0
     );
 
-    const finalTotal = totalWithoutShipping < 5000 ? totalWithoutShipping + 450 : totalWithoutShipping;
+    const finalTotal = totalWithoutShipping < 5000 ? totalWithoutShipping + 249 : totalWithoutShipping;
 
     function ClearInputs() {
         setFormData({
@@ -247,7 +247,7 @@ function Cart() {
                     className="d-flex justify-content-around pt-2 pb-2"
                     style={{border: "1px solid #dab684"}}>
                     <h5 style={{margin: "0", width: "50%", textAlign: "center", fontWeight: "400"}}> Dostava: </h5>
-                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> {freeShipping ? "0 RSD" : "450,00 RSD"} </h5>
+                    <h5 style={{margin: "0", width: "50%", textAlign: "center", paddingLeft: "10px"}}> {freeShipping ? "0 RSD" : "249,00 RSD"} </h5>
                 </div>
 
                 <div 
@@ -265,7 +265,7 @@ function Cart() {
                                 <img width="40px" height="40px" src={truck}/> <h4 style={{fontSize: "1.1rem", fontWeight: "500", margin: "0"}}> Isporuka proizvoda </h4> 
                             </div>
                             <h5 style={{fontWeight: "400", fontSize: "1.1rem"}}> Isporuka se vrši kurirskom službom <br/>
-                                Cena dostave iznosi <b>450 RSD</b> i dodaje se na ukupnu cenu narudžbine. <br/>
+                                Cena dostave iznosi <b>249 RSD</b> i dodaje se na ukupnu cenu narudžbine. <br/>
                                 Za porudžbine preko 5,000 RSD dostava je <b> BESPLATNA </b> </h5>
                         </div>
 
